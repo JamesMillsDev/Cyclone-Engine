@@ -4,7 +4,7 @@
 
 namespace CycloneEngine
 {
-	vector<input::key_state> input::keys;
+	map<keycode, input::key_state> input::keys;
 
 	input::key_state::key_state(const keycode _code) : key(_code), held(false), up(false), down(false)
 	{
@@ -18,18 +18,12 @@ namespace CycloneEngine
 	void input::key_callback(GLFWwindow* _window, int _key, int _scancode, const int _action, int _mods)
 	{
 		keycode code = static_cast<keycode>(_key);
-		key_state* key = nullptr;
-		for (key_state state : keys)
+		if (keys.count(code) == 0)
 		{
-			if (state.key == code)
-			{
-				key = &state;
-				break;
-			}
+			keys.insert({code, key_state(code)});
 		}
 
-		if (key == nullptr)
-			return;
+		key_state* key = &keys.at(code);
 
 		if (_action == GLFW_PRESS)
 		{
@@ -50,37 +44,40 @@ namespace CycloneEngine
 
 	void input::update()
 	{
-		for (key_state& state : keys)
+		for (auto& state : keys)
 		{
-			if (state.up && state.held)
-				state.up = false;
+			if (state.second.up && state.second.held)
+				state.second.up = false;
+
+			if(state.second.down)
+				state.second.down = false;
 		}
 	}
 
 	bool input::keyup(const keycode _code)
 	{
-		key_state state = keys.at(_code);
-		if (state == nullptr)
+		if (keys.count(_code) == 0)
 			return false;
 
-		return state->up;
+		key_state state = keys.at(_code);
+		return state.up;
 	}
 
 	bool input::keydown(const keycode _code)
 	{
-		key_state* state = keys.at(_code);
-		if (state == nullptr)
+		if (keys.count(_code) == 0)
 			return false;
 
-		return state->down;
+		key_state state = keys.at(_code);
+		return state.down;
 	}
 
 	bool input::keypressed(const keycode _code)
 	{
-		key_state* state = keys.at(_code);
-		if (state == nullptr)
+		if (keys.count(_code) == 0)
 			return false;
 
-		return state->held;
+		key_state state = keys.at(_code);
+		return state.held;
 	}
 }

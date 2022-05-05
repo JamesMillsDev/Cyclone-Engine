@@ -2,10 +2,18 @@
 
 #include <ctime>
 #include <iostream>
+#include <cstdio>
+
 
 namespace CycloneEngine
 {
-	log_level debug::level = INFO;
+	log_level debug::level = Info;
+	HANDLE debug::consoleHandle;
+
+	void debug::init()
+	{
+		consoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+	}
 
 	void debug::set_level(const log_level _level)
 	{
@@ -14,38 +22,49 @@ namespace CycloneEngine
 
 	void debug::log(const char* _message)
 	{
-		try_print_message(_message, INFO);
+		try_print_message(_message, Info);
 	}
 
 	void debug::log_warning(const char* _message)
 	{
-		try_print_message(_message, WARNING);
+		try_print_message(_message, Warning);
 	}
 
 	void debug::log_error(const char* _message)
 	{
-		try_print_message(_message, ERROR);
+		try_print_message(_message, Error);
 	}
 
 	void debug::log_exception(const char* _message)
 	{
-		try_print_message(_message, EXCEPTION);
+		try_print_message(_message, Exception);
 	}
 
 	void debug::try_print_message(const string& _message, const log_level _level)
 	{
 		if (static_cast<int>(_level) >= static_cast<int>(level))
-			std::cout << get_message(_message, _level);
+			printf(get_message(_message, _level).c_str());
 	}
 
 	string debug::get_message(const string& _message, const log_level _level)
 	{
 		switch (_level)
 		{
-			case INFO: return "[" + get_time_string() + "]\x1B[37m[INFO]\033[0m " + _message + "\n";
-			case WARNING: return "[" + get_time_string() + "]\x1B[33m[WARNING]\033[0m " + _message + "\n";
-			case ERROR: return "[" + get_time_string() + "]\x1B[31m[ERROR]\033[0m " + _message + "\n";
-			case EXCEPTION: return "[" + get_time_string() + "]\x1B[31m[EXCEPTION]\033[0m " + _message + "\n";
+			case Info:
+				SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
+				return "[" + get_time_string() + "][INFO] " + _message + "\n";
+
+			case Warning:
+				SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED | FOREGROUND_GREEN);
+				return "[" + get_time_string() + "][WARNING] " + _message + "\n";
+
+			case Error:
+				SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
+				return "[" + get_time_string() + "][ERROR] " + _message + "\n";
+
+			case Exception: 
+				SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
+				return "[" + get_time_string() + "][EXCEPTION] " + _message + "\n";
 		}
 
 		return "";

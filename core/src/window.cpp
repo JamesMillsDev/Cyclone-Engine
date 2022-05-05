@@ -1,4 +1,4 @@
-#include "Window.h"
+#include "window.h"
 
 #include <sstream>
 #include <GL/glew.h>
@@ -67,8 +67,6 @@ namespace CycloneEngine
 		/* Loop until the user closes the window */
 		while (!glfwWindowShouldClose(windowInstance))
 		{
-			input::update();
-
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -77,6 +75,8 @@ namespace CycloneEngine
 
 			if (input::keydown(keycode::A))
 				debug::log_error("pressed a key");
+
+			input::update();
 
 			/* Poll for and process events */
 			glfwPollEvents();

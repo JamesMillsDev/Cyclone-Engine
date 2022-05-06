@@ -7,7 +7,7 @@
 
 namespace CycloneEngine
 {
-	log_level debug::level = Info;
+	log_level debug::level = log_level::Info;
 	HANDLE debug::consoleHandle;
 
 	void debug::init()
@@ -22,22 +22,22 @@ namespace CycloneEngine
 
 	void debug::log(const char* _message)
 	{
-		try_print_message(_message, Info);
+		try_print_message(_message, log_level::Info);
 	}
 
 	void debug::log_warning(const char* _message)
 	{
-		try_print_message(_message, Warning);
+		try_print_message(_message, log_level::Warning);
 	}
 
 	void debug::log_error(const char* _message)
 	{
-		try_print_message(_message, Error);
+		try_print_message(_message, log_level::Error);
 	}
 
 	void debug::log_exception(const char* _message)
 	{
-		try_print_message(_message, Exception);
+		try_print_message(_message, log_level::Exception);
 	}
 
 	void debug::try_print_message(const string& _message, const log_level _level)
@@ -50,19 +50,19 @@ namespace CycloneEngine
 	{
 		switch (_level)
 		{
-			case Info:
+			case log_level::Info:
 				SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_GREEN);
 				return "[" + get_time_string() + "][INFO] " + _message + "\n";
 
-			case Warning:
+			case log_level::Warning:
 				SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED | FOREGROUND_GREEN);
 				return "[" + get_time_string() + "][WARNING] " + _message + "\n";
 
-			case Error:
+			case log_level::Error:
 				SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
 				return "[" + get_time_string() + "][ERROR] " + _message + "\n";
 
-			case Exception: 
+			case log_level::Exception:
 				SetConsoleTextAttribute(consoleHandle, FOREGROUND_RED);
 				return "[" + get_time_string() + "][EXCEPTION] " + _message + "\n";
 		}
@@ -73,19 +73,20 @@ namespace CycloneEngine
 	string debug::get_time_string()
 	{
 		std::time_t t = std::time(nullptr);
-		std::tm* now = std::localtime(&t);
+		std::tm now = std::tm();
+		localtime_s(&now, &t);
 
-		int hour = now->tm_hour % 12;
+		int hour = now.tm_hour % 12;
 		string hourString = std::to_string(hour);
 		if (hour < 10)
 			hourString = "0" + hourString;
 
-		int min = now->tm_min;
+		int min = now.tm_min;
 		string minString = std::to_string(min);
 		if (min < 10)
 			minString = "0" + minString;
 
-		int sec = now->tm_sec;
+		int sec = now.tm_sec;
 		string secString = std::to_string(sec);
 		if (sec < 10)
 			secString = "0" + secString;

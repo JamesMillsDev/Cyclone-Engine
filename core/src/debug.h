@@ -8,12 +8,12 @@ using std::string;
 
 namespace CycloneEngine
 {
-	enum log_level
+	enum class log_level
 	{
-		Info,
-		Warning,
-		Error,
-		Exception
+		Info = 0,
+		Warning = 1,
+		Error = 2,
+		Exception = 3
 	};
 
 	class debug

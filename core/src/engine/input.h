@@ -2,6 +2,12 @@
 #define CYCLONE_INPUT
 
 #include <map>
+
+namespace CycloneEditor
+{
+	class editor;
+}
+
 using std::map;
 
 class GLFWwindow;
@@ -155,7 +161,7 @@ namespace CycloneEngine
 		static void key_callback(GLFWwindow* _window, int _key, int _scancode, int _action, int _mods);
 		static map<keycode, key_state> keys;
 
-		friend class window;
+		friend class CycloneEditor::editor;
 	};
 }
 

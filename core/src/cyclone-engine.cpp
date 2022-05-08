@@ -1,10 +1,11 @@
 #include "window.h"
-#include "debug.h"
 
-using CycloneEngine::window;
+#include <Windows.h>
 
 int main()
 {
+    ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
+
     window* appWindow = new window("Cyclone Engine");
     if (!appWindow->init())
         return -1;

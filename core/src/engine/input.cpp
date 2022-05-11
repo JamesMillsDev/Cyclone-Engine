@@ -28,7 +28,7 @@ namespace CycloneEngine
 		if (_action == GLFW_PRESS)
 		{
 			key->down = true;
-			key->held = true;
+			key->held = false;
 		}
 		else if(_action == GLFW_REPEAT)
 		{
@@ -38,7 +38,7 @@ namespace CycloneEngine
 		else if(_action == GLFW_RELEASE)
 		{
 			key->up = true;
-			key->held = true;
+			key->held = false;
 		}
 	}
 

@@ -69,7 +69,13 @@ namespace CycloneEditor
 
 	std::string editor_settings::get_file_path() const
 	{
-		std::string path = getenv("localappdata");
+		char* output;
+		size_t len;
+
+		_dupenv_s(&output, &len, "localappdata");
+
+		std::string path;
+		path += output;
 		path += "\\CycloneEngine";
 		if(!fs::is_directory(path) || !fs::exists(path))
 		{

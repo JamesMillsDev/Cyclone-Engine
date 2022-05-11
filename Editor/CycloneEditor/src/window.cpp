@@ -4,7 +4,7 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
-#include "engine/debug.h"
+#include "debug.h"
 
 window::window(const char* _name)
 	: windowInstance(nullptr), name(_name), editorInstance(nullptr)

@@ -6,8 +6,6 @@
 
 #include <GL/glew.h>
 
-#include "debug.h"
-
 namespace CycloneEngine
 {
 	shader::shader(const char* _file, const ShaderType _type) : id(0), type(_type), file(_file)
@@ -36,7 +34,6 @@ namespace CycloneEngine
 			break;
 
 		case ShaderType::INVALID: 
-			debug::log_exception("Shader type of INVALID was attempted to be loaded.");
 			return;
 		}
 

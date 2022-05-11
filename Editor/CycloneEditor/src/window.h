@@ -1,6 +1,6 @@
 #ifndef CYCLONE_WINDOW
 #define CYCLONE_WINDOW
-#include "editor/editor.h"
+#include "editor.h"
 
 class window
 {

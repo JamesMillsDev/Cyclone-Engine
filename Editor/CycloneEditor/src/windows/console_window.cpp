@@ -2,8 +2,8 @@
 
 #include "imgui/imgui.h"
 
-#include "engine/debug.h"
-#include "engine/input.h"
+#include "debug.h"
+#include "input.h"
 
 namespace CycloneEditor
 {

@@ -19,50 +19,14 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="scene_camera.cpp" />
-    <ClCompile Include="src\engine\camera.cpp" />
-    <ClCompile Include="dep\imgui\imgui.cpp" />
-    <ClCompile Include="dep\imgui\imgui_demo.cpp" />
-    <ClCompile Include="dep\imgui\imgui_draw.cpp" />
-    <ClCompile Include="dep\imgui\imgui_impl_glfw.cpp" />
-    <ClCompile Include="dep\imgui\imgui_impl_opengl2.cpp" />
-    <ClCompile Include="dep\imgui\imgui_impl_opengl3.cpp" />
-    <ClCompile Include="dep\imgui\imgui_tables.cpp" />
-    <ClCompile Include="dep\imgui\imgui_widgets.cpp" />
-    <ClCompile Include="src\editor\editor_settings.cpp" />
-    <ClCompile Include="src\editor\windows\menu_window.cpp" />
-    <ClCompile Include="src\editor\windows\scene_window.cpp" />
-    <ClCompile Include="src\editor\editor.cpp" />
-    <ClCompile Include="src\editor\windows\console_window.cpp" />
-    <ClCompile Include="src\engine\input.cpp" />
-    <ClCompile Include="src\engine\shader.cpp" />
-    <ClCompile Include="src\engine\debug.cpp" />
-    <ClCompile Include="src\cyclone-engine.cpp" />
-    <ClCompile Include="src\window.cpp" />
+    <ClCompile Include="src\camera.cpp" />
+    <ClCompile Include="src\input.cpp" />
+    <ClCompile Include="src\shader.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="scene_camera.h" />
-    <ClInclude Include="src\engine\camera.h" />
-    <ClInclude Include="dep\imgui\imconfig.h" />
-    <ClInclude Include="dep\imgui\imgui.h" />
-    <ClInclude Include="dep\imgui\imgui_impl_glfw.h" />
-    <ClInclude Include="dep\imgui\imgui_impl_opengl2.h" />
-    <ClInclude Include="dep\imgui\imgui_impl_opengl3.h" />
-    <ClInclude Include="dep\imgui\imgui_impl_opengl3_loader.h" />
-    <ClInclude Include="dep\imgui\imgui_internal.h" />
-    <ClInclude Include="dep\imgui\imstb_rectpack.h" />
-    <ClInclude Include="dep\imgui\imstb_textedit.h" />
-    <ClInclude Include="dep\imgui\imstb_truetype.h" />
-    <ClInclude Include="src\editor\editor_settings.h" />
-    <ClInclude Include="src\editor\windows\menu_window.h" />
-    <ClInclude Include="src\editor\windows\editor_window.h" />
-    <ClInclude Include="src\editor\windows\scene_window.h" />
-    <ClInclude Include="src\editor\editor.h" />
-    <ClInclude Include="src\editor\windows\console_window.h" />
-    <ClInclude Include="src\engine\input.h" />
-    <ClInclude Include="src\engine\shader.h" />
-    <ClInclude Include="src\engine\debug.h" />
-    <ClInclude Include="src\window.h" />
+    <ClInclude Include="src\camera.h" />
+    <ClInclude Include="src\input.h" />
+    <ClInclude Include="src\shader.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
@@ -86,13 +50,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>Application</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -166,7 +130,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dep\glfw-3.3.7\include;$(SolutionDir)\dep\glew-2.1.0\include;$(SolutionDir)\dep\glm\include;$(ProjectDir)\src;$(ProjectDir)\dep;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dep\glfw-3.3.7\include;$(SolutionDir)\dep\glew-2.1.0\include;$(SolutionDir)\dep\glm\include;$(ProjectDir)\src;</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
@@ -186,7 +150,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dep\glfw-3.3.7\include;$(SolutionDir)\dep\glew-2.1.0\include;$(SolutionDir)\dep\glm\include;$(ProjectDir)\src;$(ProjectDir)\dep;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dep\glfw-3.3.7\include;$(SolutionDir)\dep\glew-2.1.0\include;$(SolutionDir)\dep\glm\include;$(ProjectDir)\src;</AdditionalIncludeDirectories>
       <DisableSpecificWarnings>4996</DisableSpecificWarnings>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>

@@ -4,8 +4,8 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 
-#include "engine/input.h"
-#include "engine/debug.h"
+#include "input.h"
+#include "debug.h"
 
 #include "windows/console_window.h"
 #include "windows/scene_window.h"

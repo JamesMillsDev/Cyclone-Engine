@@ -11,6 +11,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CycloneEngine", "Engine\Cyc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CycloneEditor", "Editor\CycloneEditor\CycloneEditor.vcxproj", "{AE558F81-ED90-44E1-A2AC-5B35086515F1}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CycloneEngine-Math", "Engine\CycloneEngine-Math\CycloneEngine-Math.vcxproj", "{27141134-30C0-49EC-8EDB-037C7F7FF0D9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -35,6 +37,14 @@ Global
 		{AE558F81-ED90-44E1-A2AC-5B35086515F1}.Release|x64.Build.0 = Release|x64
 		{AE558F81-ED90-44E1-A2AC-5B35086515F1}.Release|x86.ActiveCfg = Release|Win32
 		{AE558F81-ED90-44E1-A2AC-5B35086515F1}.Release|x86.Build.0 = Release|Win32
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Debug|x64.ActiveCfg = Debug|x64
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Debug|x64.Build.0 = Debug|x64
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Debug|x86.ActiveCfg = Debug|Win32
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Debug|x86.Build.0 = Debug|Win32
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Release|x64.ActiveCfg = Release|x64
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Release|x64.Build.0 = Release|x64
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Release|x86.ActiveCfg = Release|Win32
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -42,6 +52,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{BC799793-227C-4D44-956E-0EAA523D1B6A} = {CF568A4A-9B37-4F65-BEC0-B70C23D28E4C}
 		{AE558F81-ED90-44E1-A2AC-5B35086515F1} = {624487E4-CF89-400C-93AA-E0E942C0A124}
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9} = {CF568A4A-9B37-4F65-BEC0-B70C23D28E4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA08CA66-FCC3-4B2C-909E-161885783F52}

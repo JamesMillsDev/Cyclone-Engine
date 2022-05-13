@@ -3,7 +3,7 @@
 
 namespace CycloneEngine
 {
-	class camera
+	class Camera
 	{
 	};
 }

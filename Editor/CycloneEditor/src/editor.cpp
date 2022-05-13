@@ -1,4 +1,4 @@
-#include "editor.h"
+#include "Editor.h"
 
 #include "imgui/imgui.h"
 #include "imgui/imgui_impl_glfw.h"
@@ -7,30 +7,30 @@
 #include "input.h"
 #include "debug.h"
 
-#include "windows/console_window.h"
-#include "windows/scene_window.h"
+#include "windows/ConsoleWindow.h"
+#include "windows/SceneWindow.h"
 
 #include <GLFW/glfw3.h>
 
-#include "editor_settings.h"
-#include "windows/menu_window.h"
+#include "EditorSettings.h"
+#include "windows/MenuWindow.h"
 
 using namespace CycloneEngine;
 
 namespace CycloneEditor
 {
-	editor::editor(GLFWwindow* _window) : settings(new editor_settings())
+	Editor::Editor(GLFWwindow* _window) : settings(new EditorSettings())
 	{
-		windows.push_back(new menu_window(_window));
-		windows.push_back(new console_window());
-		windows.push_back(new scene_window());
+		windows.push_back(new MenuWindow(_window));
+		windows.push_back(new ConsoleWindow());
+		windows.push_back(new SceneWindow());
 	}
 
-	void editor::init(GLFWwindow* _window) const
+	void Editor::init(GLFWwindow* _window) const
 	{
 		settings->deserialize(_window);
 
-		input::init(_window);
+		Input::init(_window);
 
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -45,13 +45,13 @@ namespace CycloneEditor
 		ImGui_ImplOpenGL3_Init("#version 130");
 	}
 
-	void editor::run() const
+	void Editor::run() const
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		for (editor_window* window : windows)
+		for (EditorWindow* window : windows)
 		{
 			window->render();
 		}
@@ -68,10 +68,10 @@ namespace CycloneEditor
 			glfwMakeContextCurrent(backupCurrentContext);
 		}
 
-		input::update();
+		Input::update();
 	}
 
-	void editor::cleanup(GLFWwindow* _window) const
+	void Editor::cleanup(GLFWwindow* _window) const
 	{
 		settings->serialize(_window);
 

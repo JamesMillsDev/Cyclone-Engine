@@ -5,7 +5,7 @@
 
 namespace CycloneEditor
 {
-	class editor;
+	class Editor;
 }
 
 using std::map;
@@ -14,7 +14,7 @@ class GLFWwindow;
 
 namespace CycloneEngine
 {
-	enum class keycode
+	enum class Keycode
 	{
 		Unknown = -1,
 		Spacebar = 32,
@@ -137,31 +137,31 @@ namespace CycloneEngine
 		Menu = 348
 	};
 
-	class input
+	class Input
 	{
 	public:
 		static void init(GLFWwindow* _window);
-		static bool keypressed(keycode _code);
-		static bool keyup(keycode _code);
-		static bool keydown(keycode _code);
+		static bool keypressed(Keycode _code);
+		static bool keyup(Keycode _code);
+		static bool keydown(Keycode _code);
 
 	private:
-		class key_state
+		class KeyState
 		{
 		public:
-			keycode key;
+			Keycode key;
 			bool held;
 			bool up;
 			bool down;
 
-			key_state(keycode _code);
+			KeyState(Keycode _code);
 		};
 
 		static void update();
 		static void key_callback(GLFWwindow* _window, int _key, int _scancode, int _action, int _mods);
-		static map<keycode, key_state> keys;
+		static map<Keycode, KeyState> keys;
 
-		friend class CycloneEditor::editor;
+		friend class CycloneEditor::Editor;
 	};
 }
 

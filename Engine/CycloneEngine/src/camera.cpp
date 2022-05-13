@@ -1,1 +1,1 @@
-#include "camera.h"
+#include "Camera.h"

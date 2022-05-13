@@ -1,4 +1,4 @@
-#include "window.h"
+#include "Window.h"
 
 #include <Windows.h>
 
@@ -6,7 +6,7 @@ int main()
 {
     ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 
-    window* appWindow = new window("Cyclone Engine");
+    CycloneEditor::Window* appWindow = new CycloneEditor::Window("Cyclone Engine");
     if (!appWindow->init())
         return -1;
 

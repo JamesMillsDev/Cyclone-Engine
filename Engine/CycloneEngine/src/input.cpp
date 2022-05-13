@@ -1,29 +1,29 @@
-#include "input.h"
+#include "Input.h"
 
 #include <GLFW/glfw3.h>
 
 namespace CycloneEngine
 {
-	map<keycode, input::key_state> input::keys;
+	map<Keycode, Input::KeyState> Input::keys;
 
-	input::key_state::key_state(const keycode _code) : key(_code), held(false), up(false), down(false)
+	Input::KeyState::KeyState(const Keycode _code) : key(_code), held(false), up(false), down(false)
 	{
 	}
 
-	void input::init(GLFWwindow* _window)
+	void Input::init(GLFWwindow* _window)
 	{
 		glfwSetKeyCallback(_window, key_callback);
 	}
 
-	void input::key_callback(GLFWwindow* _window, int _key, int _scancode, const int _action, int _mods)
+	void Input::key_callback(GLFWwindow* _window, int _key, int _scancode, const int _action, int _mods)
 	{
-		keycode code = static_cast<keycode>(_key);
+		Keycode code = static_cast<Keycode>(_key);
 		if (keys.count(code) == 0)
 		{
-			keys.insert({code, key_state(code)});
+			keys.insert({code, KeyState(code)});
 		}
 
-		key_state* key = &keys.at(code);
+		KeyState* key = &keys.at(code);
 
 		if (_action == GLFW_PRESS)
 		{
@@ -42,7 +42,7 @@ namespace CycloneEngine
 		}
 	}
 
-	void input::update()
+	void Input::update()
 	{
 		for (auto& state : keys)
 		{
@@ -54,30 +54,30 @@ namespace CycloneEngine
 		}
 	}
 
-	bool input::keyup(const keycode _code)
+	bool Input::keyup(const Keycode _code)
 	{
 		if (keys.count(_code) == 0)
 			return false;
 
-		key_state state = keys.at(_code);
+		KeyState state = keys.at(_code);
 		return state.up;
 	}
 
-	bool input::keydown(const keycode _code)
+	bool Input::keydown(const Keycode _code)
 	{
 		if (keys.count(_code) == 0)
 			return false;
 
-		key_state state = keys.at(_code);
+		KeyState state = keys.at(_code);
 		return state.down;
 	}
 
-	bool input::keypressed(const keycode _code)
+	bool Input::keypressed(const Keycode _code)
 	{
 		if (keys.count(_code) == 0)
 			return false;
 
-		key_state state = keys.at(_code);
+		KeyState state = keys.at(_code);
 		return state.held;
 	}
 }

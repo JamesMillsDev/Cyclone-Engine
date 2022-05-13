@@ -1,4 +1,4 @@
-#include "debug.h"
+#include "Debug.h"
 
 #include <string>
 #include <ctime>
@@ -6,40 +6,40 @@
 
 namespace CycloneEngine
 {
-	log_level debug::level = log_level::Info;
-	std::vector<log_message*> debug::messages;
+	LogLevel Debug::level = LogLevel::Info;
+	std::vector<LogMessage*> Debug::messages;
 
-	void debug::set_level(const log_level _level)
+	void Debug::set_level(const LogLevel _level)
 	{
 		level = _level;
 	}
 
-	void debug::log(const char* _message)
+	void Debug::log(const char* _message)
 	{
-		store_message(_message, log_level::Info);
+		store_message(_message, LogLevel::Info);
 	}
 
-	void debug::log_warning(const char* _message)
+	void Debug::log_warning(const char* _message)
 	{
-		store_message(_message, log_level::Warning);
+		store_message(_message, LogLevel::Warning);
 	}
 
-	void debug::log_error(const char* _message)
+	void Debug::log_error(const char* _message)
 	{
-		store_message(_message, log_level::Error);
+		store_message(_message, LogLevel::Error);
 	}
 
-	void debug::log_exception(const char* _message)
+	void Debug::log_exception(const char* _message)
 	{
-		store_message(_message, log_level::Exception);
+		store_message(_message, LogLevel::Exception);
 	}
 
-	void debug::store_message(const char* _message, const log_level _level)
+	void Debug::store_message(const char* _message, const LogLevel _level)
 	{
-		messages.push_back(new log_message(_level, _message, get_time()));
+		messages.push_back(new LogMessage(_level, _message, get_time()));
 	}
 
-	std::string debug::get_time()
+	std::string Debug::get_time()
 	{
 		std::time_t t = std::time(nullptr);
 		std::tm now = std::tm();
@@ -63,13 +63,13 @@ namespace CycloneEngine
 		return "[" + hourString + ":" + minString + ":" + secString + "] ";
 	}
 
-	log_message::log_message(const log_level _level, const char* _message, std::string _time)
+	LogMessage::LogMessage(const LogLevel _level, const char* _message, std::string _time)
 		: level(_level), message(_message), time(std::move(_time))
 	{
 		
 	}
 
-	void log_message::render() const
+	void LogMessage::render() const
 	{
 		std::string constructedMessage = time;
 		constructedMessage += "[";
@@ -80,27 +80,27 @@ namespace CycloneEngine
 		ImGui::TextColored(*get_color(), constructedMessage.c_str());
 	}
 
-	ImVec4* log_message::get_color() const
+	ImVec4* LogMessage::get_color() const
 	{
 		switch (level)
 		{
-		case log_level::Info: return new ImVec4(1, 1, 1, 1);
-		case log_level::Warning: return new ImVec4(1, 1, 0, 1);
-		case log_level::Error: return new ImVec4(1, 0, 0, 1);
-		case log_level::Exception: return new ImVec4(0.75f, 0, 0.75f, 1);
+		case LogLevel::Info: return new ImVec4(1, 1, 1, 1);
+		case LogLevel::Warning: return new ImVec4(1, 1, 0, 1);
+		case LogLevel::Error: return new ImVec4(1, 0, 0, 1);
+		case LogLevel::Exception: return new ImVec4(0.75f, 0, 0.75f, 1);
 		}
 
 		return new ImVec4(1, 1, 1, 1);
 	}
 
-	const char* log_message::get_level_text() const
+	const char* LogMessage::get_level_text() const
 	{
 		switch (level)
 		{
-		case log_level::Info: return "INFO";
-		case log_level::Warning: return "WARNING";
-		case log_level::Error: return "ERROR";
-		case log_level::Exception: return "EXCEPTION";
+		case LogLevel::Info: return "INFO";
+		case LogLevel::Warning: return "WARNING";
+		case LogLevel::Error: return "ERROR";
+		case LogLevel::Exception: return "EXCEPTION";
 		}
 
 		return "INFO";

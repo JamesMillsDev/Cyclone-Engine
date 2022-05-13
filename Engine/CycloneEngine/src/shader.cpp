@@ -1,4 +1,4 @@
-#include "shader.h"
+#include "Shader.h"
 
 #include <fstream>
 #include <streambuf>
@@ -8,12 +8,12 @@
 
 namespace CycloneEngine
 {
-	shader::shader(const char* _file, const ShaderType _type) : id(0), type(_type), file(_file)
+	Shader::Shader(const char* _file, const ShaderType _type) : id(0), type(_type), file(_file)
 	{
 		load();
 	}
 
-	void shader::load()
+	void Shader::load()
 	{
 		std::ifstream t(file);
 		t.seekg(0, std::ios::end);
@@ -42,12 +42,12 @@ namespace CycloneEngine
 		glCompileShader(id);
 	}
 
-	shader_program::shader_program() : id(0)
+	ShaderProgram::ShaderProgram() : id(0)
 	{
 
 	}
 
-	void shader_program::append(const shader* _shader, const bool _autoCompile)
+	void ShaderProgram::append(const Shader* _shader, const bool _autoCompile)
 	{
 		shaders.push_back(*_shader);
 
@@ -55,14 +55,14 @@ namespace CycloneEngine
 			compile();
 	}
 
-	void shader_program::compile()
+	void ShaderProgram::compile()
 	{
 		if(id != 0)
 			glDeleteProgram(id);
 
 		id = glCreateProgram();
 
-		for (shader shader : shaders)
+		for (Shader shader : shaders)
 		{
 			glAttachShader(id, static_cast<unsigned int>(shader));
 		}
@@ -70,7 +70,7 @@ namespace CycloneEngine
 		glLinkProgram(id);
 	}
 
-	void shader_program::bind() const
+	void ShaderProgram::bind() const
 	{
 		glUseProgram(id);
 	}

@@ -125,6 +125,9 @@
       <AdditionalDependencies>CycloneEngine.lib;glfw3.lib;glfw3dll.lib;opengl32.lib;glew32.lib;kernel32.lib;user32.lib;gdi32.lib;winspool.lib;comdlg32.lib;advapi32.lib;shell32.lib;ole32.lib;oleaut32.lib;uuid.lib;odbc32.lib;odbccp32.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(SolutionDir)\dep\glfw-3.3.7\lib;$(SolutionDir)\dep\glew-2.1.0\lib;$(SolutionDir)$(Platform)\$(Configuration)\</AdditionalLibraryDirectories>
     </Link>
+    <PreBuildEvent>
+      <Command>copy $(SolutionDir)\dep\glew-2.1.0\lib\glew32.dll $(SolutionDir)\$(Platform)\$(Configuration)\</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -157,15 +160,15 @@
     <ClInclude Include="dep\imgui\imstb_rectpack.h" />
     <ClInclude Include="dep\imgui\imstb_textedit.h" />
     <ClInclude Include="dep\imgui\imstb_truetype.h" />
-    <ClInclude Include="src\debug.h" />
-    <ClInclude Include="src\editor.h" />
-    <ClInclude Include="src\editor_settings.h" />
-    <ClInclude Include="src\scene_camera.h" />
-    <ClInclude Include="src\window.h" />
-    <ClInclude Include="src\windows\console_window.h" />
-    <ClInclude Include="src\windows\editor_window.h" />
-    <ClInclude Include="src\windows\menu_window.h" />
-    <ClInclude Include="src\windows\scene_window.h" />
+    <ClInclude Include="src\Debug.h" />
+    <ClInclude Include="src\Editor.h" />
+    <ClInclude Include="src\EditorSettings.h" />
+    <ClInclude Include="src\SceneCamera.h" />
+    <ClInclude Include="src\Window.h" />
+    <ClInclude Include="src\windows\ConsoleWindow.h" />
+    <ClInclude Include="src\windows\EditorWindow.h" />
+    <ClInclude Include="src\windows\MenuWindow.h" />
+    <ClInclude Include="src\windows\SceneWindow.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dep\imgui\imgui.cpp" />
@@ -177,14 +180,14 @@
     <ClCompile Include="dep\imgui\imgui_tables.cpp" />
     <ClCompile Include="dep\imgui\imgui_widgets.cpp" />
     <ClCompile Include="cyclone-engine.cpp" />
-    <ClCompile Include="src\debug.cpp" />
-    <ClCompile Include="src\editor.cpp" />
-    <ClCompile Include="src\editor_settings.cpp" />
-    <ClCompile Include="src\scene_camera.cpp" />
-    <ClCompile Include="src\window.cpp" />
-    <ClCompile Include="src\windows\console_window.cpp" />
-    <ClCompile Include="src\windows\menu_window.cpp" />
-    <ClCompile Include="src\windows\scene_window.cpp" />
+    <ClCompile Include="src\Debug.cpp" />
+    <ClCompile Include="src\Editor.cpp" />
+    <ClCompile Include="src\EditorSettings.cpp" />
+    <ClCompile Include="src\SceneCamera.cpp" />
+    <ClCompile Include="src\Window.cpp" />
+    <ClCompile Include="src\windows\ConsoleWindow.cpp" />
+    <ClCompile Include="src\windows\MenuWindow.cpp" />
+    <ClCompile Include="src\windows\SceneWindow.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

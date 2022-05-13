@@ -12,10 +12,10 @@ namespace CycloneEngine
 		FRAGMENT
 	};
 
-	class shader
+	class Shader
 	{
 	public:
-		shader(const char* _file, ShaderType _type);
+		Shader(const char* _file, ShaderType _type);
 
 		explicit operator unsigned int() const { return id; }
 
@@ -27,17 +27,17 @@ namespace CycloneEngine
 
 	};
 
-	class shader_program
+	class ShaderProgram
 	{
 	public:
-		shader_program();
-		void append(const shader* _shader, bool _autoCompile = true);
+		ShaderProgram();
+		void append(const Shader* _shader, bool _autoCompile = true);
 		void compile();
 		void bind() const;
 
 	private:
 		unsigned int id;
-		std::vector<shader> shaders;
+		std::vector<Shader> shaders;
 
 	};
 }

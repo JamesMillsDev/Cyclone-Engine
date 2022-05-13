@@ -7,21 +7,21 @@ class GLFWwindow;
 
 namespace CycloneEditor
 {
-	class editor_window;
-	class editor_settings;
+	class EditorWindow;
+	class EditorSettings;
 
-	class editor
+	class Editor
 	{
 	public:
-		editor(GLFWwindow* _window);
+		Editor(GLFWwindow* _window);
 
 		void init(GLFWwindow* _window) const;
 		void run() const;
 		void cleanup(GLFWwindow* _window) const;
 
 	private:
-		std::vector<editor_window*> windows;
-		editor_settings* settings;
+		std::vector<EditorWindow*> windows;
+		EditorSettings* settings;
 
 	};
 }

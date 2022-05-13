@@ -28,6 +28,13 @@ namespace CycloneEngine
 		z = _z;
 	}
 
+	Vector3::Vector3(vec3 _vector)
+	{
+		x = _vector.x;
+		y = _vector.y;
+		z = _vector.z;
+	}
+
 	Vector3::~Vector3() = default;
 
 	float Vector3::magnitude()

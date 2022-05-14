@@ -1,43 +1,35 @@
 #include "Matrix4x4.h"
 
 #include "Vector3.h"
+#include "Quaternion.h"
+
+#include <glm/gtx/transform.hpp>
+#include <glm/vec3.hpp>
 
 namespace CycloneEngine
 {
-	Matrix4x4::Matrix4x4()
-		: matrix()
+	Matrix4x4::Matrix4x4() : matrix()
 	{
-		matrix[0][0] = 1; matrix[0][1] = 0; matrix[0][2] = 0; matrix[0][3] = 0;
-		matrix[1][0] = 1; matrix[1][1] = 1; matrix[1][2] = 0; matrix[1][3] = 0;
-		matrix[2][0] = 1; matrix[2][1] = 0; matrix[2][2] = 1; matrix[2][3] = 0;
-		matrix[3][0] = 1; matrix[3][1] = 0; matrix[3][2] = 0; matrix[3][3] = 1;
+		matrix = glm::identity<mat4x4>();
 	}
 
-	void Matrix4x4::scale(Vector3 _scale)
+	void Matrix4x4::scale(const Vector3 _scale)
 	{
-		matrix[0][0] += _scale.x;
-		matrix[1][1] += _scale.y;
-		matrix[2][2] += _scale.z;
+		matrix *= glm::scale((vec3)_scale);
 	}
 
-	void Matrix4x4::setScale(Vector3 _scale)
+	void Matrix4x4::rotate(const Vector3 _rotate)
 	{
-		matrix[0][0] = _scale.x;
-		matrix[1][1] = _scale.y;
-		matrix[2][2] = _scale.z;
+		rotate(Quaternion::eulerAngles(_rotate));
 	}
 
-	void Matrix4x4::translate(Vector3 _translation)
+	void Matrix4x4::rotate(const Quaternion _rotate)
 	{
-		matrix[3][0] += _translation.x;
-		matrix[3][1] += _translation.y;
-		matrix[3][2] += _translation.z;
+		matrix *= toMat4((quat)_rotate);
 	}
 
-	void Matrix4x4::setTranslation(Vector3 _translation)
+	void Matrix4x4::translate(const Vector3 _translation)
 	{
-		matrix[3][0] = _translation.x;
-		matrix[3][1] = _translation.y;
-		matrix[3][2] = _translation.z;
+		matrix *= glm::translate((vec3)_translation);
 	}
 }

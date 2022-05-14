@@ -21,6 +21,7 @@ namespace CycloneEngine
 
 		Vector3();
 		Vector3(float _x, float _y, float _z);
+		Vector3(vec3 _vector);
 		~Vector3();
 
 		float x;

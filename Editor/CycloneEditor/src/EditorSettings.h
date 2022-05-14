@@ -19,11 +19,11 @@ namespace CycloneEditor
 		void serialize(GLFWwindow* _window) const;
 		void deserialize(GLFWwindow* _window) const;
 
-		vec2 get_last_window_pos() const { return windowPos; }
-		vec2 get_last_window_size() const { return windowSize; }
+		vec2 getLastWindowPos() const { return windowPos; }
+		vec2 getLastWindowSize() const { return windowSize; }
 
 	private:
-		std::string get_file_path() const;
+		std::string getFilePath() const;
 		vec2 windowPos;
 		vec2 windowSize;
 

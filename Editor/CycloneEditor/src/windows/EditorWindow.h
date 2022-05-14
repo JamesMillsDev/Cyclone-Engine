@@ -8,8 +8,6 @@ namespace CycloneEditor
 	public:
 		virtual ~EditorWindow() = default;
 		virtual void render() const = 0;
-		
-		bool* isOpen;
 
 	};
 }

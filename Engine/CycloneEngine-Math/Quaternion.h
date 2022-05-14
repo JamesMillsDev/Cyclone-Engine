@@ -11,11 +11,10 @@ namespace CycloneEngine
 
 	struct Quaternion
 	{
-	public:
 		static float angle(Quaternion _lhs, Quaternion _rhs);
-		static Quaternion angle_axis(Vector3 _axis, float _angle);
+		static Quaternion angleAxis(Vector3 _axis, float _angle);
 		static float dot(Quaternion _lhs, Quaternion _rhs);
-		static Quaternion euler_angles(Vector3 _euler);
+		static Quaternion eulerAngles(Vector3 _euler);
 		static Quaternion inverse(Quaternion _toInverse);
 
 		Quaternion(quat _quaternion);
@@ -24,9 +23,9 @@ namespace CycloneEngine
 		float y() const { return intQuat.y; }
 		float z() const { return intQuat.z; }
 		float w() const { return intQuat.w; }
-		Vector3 euler_angles();
+		Vector3 eulerAngles();
 
-		operator quat() const { return intQuat; }
+		explicit operator quat() const { return intQuat; }
 
 	private:
 		quat intQuat;

@@ -9,37 +9,37 @@ namespace CycloneEngine
 	LogLevel Debug::level = LogLevel::Info;
 	std::vector<LogMessage*> Debug::messages;
 
-	void Debug::set_level(const LogLevel _level)
+	void Debug::setLevel(const LogLevel _level)
 	{
 		level = _level;
 	}
 
 	void Debug::log(const char* _message)
 	{
-		store_message(_message, LogLevel::Info);
+		storeMessage(_message, LogLevel::Info);
 	}
 
-	void Debug::log_warning(const char* _message)
+	void Debug::logWarning(const char* _message)
 	{
-		store_message(_message, LogLevel::Warning);
+		storeMessage(_message, LogLevel::Warning);
 	}
 
-	void Debug::log_error(const char* _message)
+	void Debug::logError(const char* _message)
 	{
-		store_message(_message, LogLevel::Error);
+		storeMessage(_message, LogLevel::Error);
 	}
 
-	void Debug::log_exception(const char* _message)
+	void Debug::logException(const char* _message)
 	{
-		store_message(_message, LogLevel::Exception);
+		storeMessage(_message, LogLevel::Exception);
 	}
 
-	void Debug::store_message(const char* _message, const LogLevel _level)
+	void Debug::storeMessage(const char* _message, const LogLevel _level)
 	{
-		messages.push_back(new LogMessage(_level, _message, get_time()));
+		messages.push_back(new LogMessage(_level, _message, getTime()));
 	}
 
-	std::string Debug::get_time()
+	std::string Debug::getTime()
 	{
 		std::time_t t = std::time(nullptr);
 		std::tm now = std::tm();
@@ -73,14 +73,14 @@ namespace CycloneEngine
 	{
 		std::string constructedMessage = time;
 		constructedMessage += "[";
-		constructedMessage += get_level_text();
+		constructedMessage += getLevelText();
 		constructedMessage += "] ";
 		constructedMessage += message;
 
-		ImGui::TextColored(*get_color(), constructedMessage.c_str());
+		ImGui::TextColored(*getColor(), constructedMessage.c_str());
 	}
 
-	ImVec4* LogMessage::get_color() const
+	ImVec4* LogMessage::getColor() const
 	{
 		switch (level)
 		{
@@ -93,7 +93,7 @@ namespace CycloneEngine
 		return new ImVec4(1, 1, 1, 1);
 	}
 
-	const char* LogMessage::get_level_text() const
+	const char* LogMessage::getLevelText() const
 	{
 		switch (level)
 		{

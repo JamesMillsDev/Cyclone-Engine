@@ -14,12 +14,12 @@ namespace CycloneEngine
 		return Vector3::angle(left, right);
 	}
 
-	Vector3 Quaternion::euler_angles()
+	Vector3 Quaternion::eulerAngles()
 	{
 		return Vector3(glm::eulerAngles(intQuat));
 	}
 
-	Quaternion Quaternion::angle_axis(Vector3 _axis, float _angle)
+	Quaternion Quaternion::angleAxis(Vector3 _axis, float _angle)
 	{
 		return Quaternion(glm::angleAxis(_angle, (vec3)_axis));
 	}

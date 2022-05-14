@@ -158,7 +158,7 @@ namespace CycloneEngine
 		};
 
 		static void update();
-		static void key_callback(GLFWwindow* _window, int _key, int _scancode, int _action, int _mods);
+		static void keyCallback(GLFWwindow* _window, int _key, int _scancode, int _action, int _mods);
 		static map<Keycode, KeyState> keys;
 
 		friend class CycloneEditor::Editor;

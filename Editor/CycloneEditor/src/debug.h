@@ -21,16 +21,16 @@ namespace CycloneEngine
 	class Debug
 	{
 	public:
-		static void set_level(LogLevel _level);
+		static void setLevel(LogLevel _level);
 		static void log(const char* _message);
-		static void log_warning(const char* _message);
-		static void log_error(const char* _message);
-		static void log_exception(const char* _message);
-		static std::vector<LogMessage*> get_messages() { return messages; }
+		static void logWarning(const char* _message);
+		static void logError(const char* _message);
+		static void logException(const char* _message);
+		static std::vector<LogMessage*> getMessages() { return messages; }
 
 	private:
-		static void store_message(const char* _message, LogLevel _level);
-		static std::string get_time();
+		static void storeMessage(const char* _message, LogLevel _level);
+		static std::string getTime();
 		static LogLevel level;
 		static std::vector<LogMessage*> messages;
 
@@ -43,8 +43,8 @@ namespace CycloneEngine
 		void render() const;
 
 	private:
-		ImVec4* get_color() const;
-		const char* get_level_text() const;
+		ImVec4* getColor() const;
+		const char* getLevelText() const;
 		LogLevel level;
 		std::string message;
 		std::string time;

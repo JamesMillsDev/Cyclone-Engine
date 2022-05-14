@@ -20,7 +20,7 @@ namespace CycloneEngine
 		matrix[2][2] += _scale.z;
 	}
 
-	void Matrix4x4::set_scale(Vector3 _scale)
+	void Matrix4x4::setScale(Vector3 _scale)
 	{
 		matrix[0][0] = _scale.x;
 		matrix[1][1] = _scale.y;
@@ -34,7 +34,7 @@ namespace CycloneEngine
 		matrix[3][2] += _translation.z;
 	}
 
-	void Matrix4x4::set_translation(Vector3 _translation)
+	void Matrix4x4::setTranslation(Vector3 _translation)
 	{
 		matrix[3][0] = _translation.x;
 		matrix[3][1] = _translation.y;

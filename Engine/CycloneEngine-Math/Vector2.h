@@ -9,7 +9,6 @@ namespace CycloneEngine
 {
 	struct Vector2
 	{
-	public:
 		static Vector2 zero;
 		static Vector2 one;
 		static Vector2 up;
@@ -24,22 +23,22 @@ namespace CycloneEngine
 		float x;
 		float y;
 
-		float magnitude();
+		float magnitude() const;
 		void normalize();
 		static float dot(Vector2 _lhs, Vector2 _rhs);
 		static float angle(Vector2 _lhs, Vector2 _rhs);
 		static float distance(Vector2 _lhs, Vector2 _rhs);
 
-		Vector2 operator*(float _rhs) const { return Vector2{ x * _rhs, y * _rhs }; }
-		Vector2 operator*=(float _rhs) const { return Vector2{ x * _rhs, y * _rhs }; }
-		Vector2 operator/(float _rhs) const { return Vector2{ x / _rhs, y / _rhs }; }
-		Vector2 operator/=(float _rhs) const { return Vector2{ x / _rhs, y / _rhs }; }
-		Vector2 operator+(Vector2 _rhs) const { return Vector2{ x + _rhs.x, y + _rhs.y }; }
-		Vector2 operator+=(Vector2 _rhs) const { return Vector2{ x + _rhs.x, y + _rhs.y }; }
-		Vector2 operator-(Vector2 _rhs) const { return Vector2{ x - _rhs.x, y - _rhs.y }; }
-		Vector2 operator-=(Vector2 _rhs) const { return Vector2{ x - _rhs.x, y - _rhs.y }; }
+		Vector2 operator*(const float _rhs) const { return Vector2{ x * _rhs, y * _rhs }; }
+		Vector2 operator*=(const float _rhs) const { return Vector2{ x * _rhs, y * _rhs }; }
+		Vector2 operator/(const float _rhs) const { return Vector2{ x / _rhs, y / _rhs }; }
+		Vector2 operator/=(const float _rhs) const { return Vector2{ x / _rhs, y / _rhs }; }
+		Vector2 operator+(const Vector2 _rhs) const { return Vector2{ x + _rhs.x, y + _rhs.y }; }
+		Vector2 operator+=(const Vector2 _rhs) const { return Vector2{ x + _rhs.x, y + _rhs.y }; }
+		Vector2 operator-(const Vector2 _rhs) const { return Vector2{ x - _rhs.x, y - _rhs.y }; }
+		Vector2 operator-=(const Vector2 _rhs) const { return Vector2{ x - _rhs.x, y - _rhs.y }; }
 
-		operator vec2() const { return vec2(x, y); }
+		explicit operator vec2() const { return vec2(x, y); }
 
 	};
 }

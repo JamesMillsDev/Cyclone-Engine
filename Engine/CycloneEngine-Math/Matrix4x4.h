@@ -4,19 +4,21 @@
 namespace CycloneEngine
 {
 	struct Vector3;
+	// ReSharper disable once CppInconsistentNaming
 	#define MATRIX_4X4_SCALE 4
 
+	// ReSharper disable once CppInconsistentNaming
 	struct Matrix4x4
 	{
 	public:
 		Matrix4x4();
 
 		void scale(Vector3 _scale);
-		void set_scale(Vector3 _scale);
+		void setScale(Vector3 _scale);
 		void rotate(Vector3 _rotate);
-		void set_rotation(Vector3 _rotate);
+		void setRotation(Vector3 _rotate);
 		void translate(Vector3 _translation);
-		void set_translation(Vector3 _translation);
+		void setTranslation(Vector3 _translation);
 
 	private:
 		// scale / yRot / zRot	- zRot					- yRot			- xPos

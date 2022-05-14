@@ -11,12 +11,12 @@ namespace CycloneEditor
 	{
 		ImGui::Begin("Console");
 
-		for (CycloneEngine::LogMessage* message : CycloneEngine::Debug::get_messages())
+		for (CycloneEngine::LogMessage* message : CycloneEngine::Debug::getMessages())
 			message->render();
 
 		ImGui::End();
 
 		if (CycloneEngine::Input::keydown(CycloneEngine::Keycode::A))
-			CycloneEngine::Debug::log_error("test");
+			CycloneEngine::Debug::logError("test");
 	}
 }

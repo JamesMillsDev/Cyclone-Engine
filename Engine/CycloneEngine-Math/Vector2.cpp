@@ -1,6 +1,6 @@
 #include "Vector2.h"
 
-#include <math.h>
+#include <cmath>
 #include "Mathf.h"
 
 namespace CycloneEngine
@@ -18,7 +18,7 @@ namespace CycloneEngine
 		y = 0;
 	}
 
-	Vector2::Vector2(float _x, float _y)
+	Vector2::Vector2(const float _x, const float _y)
 	{
 		x = _x;
 		y = _y;
@@ -26,7 +26,7 @@ namespace CycloneEngine
 
 	Vector2::~Vector2() = default;
 
-	float Vector2::magnitude()
+	float Vector2::magnitude() const
 	{
 		return sqrt(x * x + y * y);
 	}
@@ -38,12 +38,12 @@ namespace CycloneEngine
 		y = output.y;
 	}
 
-	float Vector2::dot(Vector2 _lhs, Vector2 _rhs)
+	float Vector2::dot(const Vector2 _lhs, const Vector2 _rhs)
 	{
 		return (_lhs.x * _rhs.x) + (_lhs.y * _rhs.y);
 	}
 
-	float Vector2::angle(Vector2 _lhs, Vector2 _rhs)
+	float Vector2::angle(const Vector2 _lhs, const Vector2 _rhs)
 	{
 		float denominator = (float)sqrt(_lhs.magnitude() * _rhs.magnitude());
 		if (denominator < FLT_EPSILON)
@@ -53,7 +53,7 @@ namespace CycloneEngine
 		return acos(dotProd) * Mathf::radToDeg;
 	}
 
-	float Vector2::distance(Vector2 _lhs, Vector2 _rhs)
+	float Vector2::distance(const Vector2 _lhs, const Vector2 _rhs)
 	{
 		float xDiff = _lhs.x - _rhs.x;
 		float yDiff = _lhs.y - _rhs.y;

@@ -9,7 +9,6 @@ namespace CycloneEngine
 {
 	struct Vector4
 	{
-	public:
 		static Vector4 zero;
 		static Vector4 one;
 		static Vector4 up;
@@ -34,16 +33,16 @@ namespace CycloneEngine
 		static float angle(Vector4 _lhs, Vector4 _rhs);
 		static float distance(Vector4 _lhs, Vector4 _rhs);
 
-		Vector4 operator*(float _rhs) const { return Vector4{ x * _rhs, y * _rhs, z * _rhs, w }; }
-		Vector4 operator*=(float _rhs) const { return Vector4{ x * _rhs, y * _rhs, z * _rhs, w }; }
-		Vector4 operator/(float _rhs) const { return Vector4{ x / _rhs, y / _rhs, z / _rhs, w }; }
-		Vector4 operator/=(float _rhs) const { return Vector4{ x / _rhs, y / _rhs, z / _rhs, w }; }
-		Vector4 operator+(Vector4 _rhs) const { return Vector4{ x + _rhs.x, y + _rhs.y, z + _rhs.z, w }; }
-		Vector4 operator+=(Vector4 _rhs) const { return Vector4{ x + _rhs.x, y + _rhs.y, z + _rhs.z, w }; }
-		Vector4 operator-(Vector4 _rhs) const { return Vector4{ x - _rhs.x, y - _rhs.y, z - _rhs.z, w }; }
-		Vector4 operator-=(Vector4 _rhs) const { return Vector4{ x - _rhs.x, y - _rhs.y, z - _rhs.z, w }; }
+		Vector4 operator*(const float _rhs) const { return Vector4{ x * _rhs, y * _rhs, z * _rhs, w }; }
+		Vector4 operator*=(const float _rhs) const { return Vector4{ x * _rhs, y * _rhs, z * _rhs, w }; }
+		Vector4 operator/(const float _rhs) const { return Vector4{ x / _rhs, y / _rhs, z / _rhs, w }; }
+		Vector4 operator/=(const float _rhs) const { return Vector4{ x / _rhs, y / _rhs, z / _rhs, w }; }
+		Vector4 operator+(const Vector4 _rhs) const { return Vector4{ x + _rhs.x, y + _rhs.y, z + _rhs.z, w }; }
+		Vector4 operator+=(const Vector4 _rhs) const { return Vector4{ x + _rhs.x, y + _rhs.y, z + _rhs.z, w }; }
+		Vector4 operator-(const Vector4 _rhs) const { return Vector4{ x - _rhs.x, y - _rhs.y, z - _rhs.z, w }; }
+		Vector4 operator-=(const Vector4 _rhs) const { return Vector4{ x - _rhs.x, y - _rhs.y, z - _rhs.z, w }; }
 
-		operator vec4() const { return vec4(x, y, z, w); }
+		explicit operator vec4() const { return vec4(x, y, z, w); }
 
 	};
 }

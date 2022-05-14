@@ -15,7 +15,7 @@ namespace CycloneEditor
 {
 	void EditorSettings::serialize(GLFWwindow* _window) const
 	{
-		std::string path = get_file_path();
+		std::string path = getFilePath();
 
 		ofstream file;
 		file.open(path, std::ios::out | std::ios::binary);
@@ -40,7 +40,7 @@ namespace CycloneEditor
 
 	void EditorSettings::deserialize(GLFWwindow* _window) const
 	{
-		std::string path = get_file_path();
+		std::string path = getFilePath();
 
 		ifstream file;
 		file.open(path, std::ios::in | std::ios::binary);
@@ -67,7 +67,7 @@ namespace CycloneEditor
 		file.close();
 	}
 
-	std::string EditorSettings::get_file_path() const
+	std::string EditorSettings::getFilePath() const
 	{
 		char* output;
 		size_t len;

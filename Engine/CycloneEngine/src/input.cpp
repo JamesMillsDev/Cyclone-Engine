@@ -12,10 +12,10 @@ namespace CycloneEngine
 
 	void Input::init(GLFWwindow* _window)
 	{
-		glfwSetKeyCallback(_window, key_callback);
+		glfwSetKeyCallback(_window, keyCallback);
 	}
 
-	void Input::key_callback(GLFWwindow* _window, int _key, int _scancode, const int _action, int _mods)
+	void Input::keyCallback(GLFWwindow* _window, int _key, int _scancode, const int _action, int _mods)
 	{
 		Keycode code = static_cast<Keycode>(_key);
 		if (keys.count(code) == 0)

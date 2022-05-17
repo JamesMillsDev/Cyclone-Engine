@@ -1,6 +1,8 @@
 #ifndef CYCLONE_MATH_VECTOR2
 #define CYCLONE_MATH_VECTOR2
 
+#include "CycloneMath.h"
+
 #include <glm/vec2.hpp>
 
 using glm::vec2;
@@ -16,18 +18,18 @@ namespace CycloneEngine
 		static Vector2 right;
 		static Vector2 left;
 
-		Vector2();
-		Vector2(float _x, float _y);
-		~Vector2();
+		CYCLONE_DLL Vector2();
+		CYCLONE_DLL Vector2(float _x, float _y);
+		CYCLONE_DLL ~Vector2();
 
 		float x;
 		float y;
 
-		float magnitude() const;
-		void normalize();
-		static float dot(Vector2 _lhs, Vector2 _rhs);
-		static float angle(Vector2 _lhs, Vector2 _rhs);
-		static float distance(Vector2 _lhs, Vector2 _rhs);
+		CYCLONE_DLL float magnitude() const;
+		CYCLONE_DLL void normalize();
+		CYCLONE_DLL static float dot(Vector2 _lhs, Vector2 _rhs);
+		CYCLONE_DLL static float angle(Vector2 _lhs, Vector2 _rhs);
+		CYCLONE_DLL static float distance(Vector2 _lhs, Vector2 _rhs);
 
 		Vector2 operator*(const float _rhs) const { return Vector2{ x * _rhs, y * _rhs }; }
 		Vector2 operator*=(const float _rhs) const { return Vector2{ x * _rhs, y * _rhs }; }

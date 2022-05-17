@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Editor", "Editor", "{624487E4-CF89-400C-93AA-E0E942C0A124}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CycloneEngine", "Engine\CycloneEngine\CycloneEngine.vcxproj", "{BC799793-227C-4D44-956E-0EAA523D1B6A}"
+	ProjectSection(ProjectDependencies) = postProject
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9} = {27141134-30C0-49EC-8EDB-037C7F7FF0D9}
+	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CycloneEditor", "Editor\CycloneEditor\CycloneEditor.vcxproj", "{AE558F81-ED90-44E1-A2AC-5B35086515F1}"
 	ProjectSection(ProjectDependencies) = postProject

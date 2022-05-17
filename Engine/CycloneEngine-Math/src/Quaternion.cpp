@@ -6,6 +6,11 @@ namespace CycloneEngine
 {
 	Quaternion::Quaternion(quat _quaternion) : intQuat(_quaternion) {}
 
+	Quaternion Quaternion::eulerAngles(Vector3 _euler)
+	{
+		return Quaternion(quat((vec3)_euler));
+	}
+
 	float Quaternion::angle(Quaternion _lhs, Quaternion _rhs)
 	{
 		Vector3 left = Vector3(glm::eulerAngles((quat)_lhs));

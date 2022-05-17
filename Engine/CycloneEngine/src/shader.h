@@ -1,6 +1,8 @@
 #ifndef CYCLONE_SHADER
 #define CYCLONE_SHADER
 
+#include "CycloneEngine.h"
+
 #include <vector>
 
 namespace CycloneEngine
@@ -15,12 +17,12 @@ namespace CycloneEngine
 	class Shader
 	{
 	public:
-		Shader(const char* _file, ShaderType _type);
+		CYCLONE_DLL Shader(const char* _file, ShaderType _type);
 
-		explicit operator unsigned int() const { return id; }
+		CYCLONE_DLL explicit operator unsigned int() const { return id; }
 
 	private:
-		void load();
+		CYCLONE_DLL void load();
 		unsigned int id;
 		ShaderType type;
 		const char* file;
@@ -30,10 +32,10 @@ namespace CycloneEngine
 	class ShaderProgram
 	{
 	public:
-		ShaderProgram();
-		void append(const Shader* _shader, bool _autoCompile = true);
-		void compile();
-		void bind() const;
+		CYCLONE_DLL ShaderProgram();
+		CYCLONE_DLL void append(const Shader* _shader, bool _autoCompile = true);
+		CYCLONE_DLL void compile();
+		CYCLONE_DLL void bind() const;
 
 	private:
 		unsigned int id;

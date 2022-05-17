@@ -1,6 +1,8 @@
 #ifndef CYCLONE_MATH_MATHF
 #define CYCLONE_MATH_MATHF
 
+#include "CycloneMath.h"
+
 namespace CycloneEngine
 {
 #define PI 3.14159265358979
@@ -11,7 +13,7 @@ namespace CycloneEngine
 		static float degToRad;
 		static float radToDeg;
 
-		static float clamp(float _val, float _min, float _max);
+		CYCLONE_DLL static float clamp(float _val, float _min, float _max);
 	};
 }
 

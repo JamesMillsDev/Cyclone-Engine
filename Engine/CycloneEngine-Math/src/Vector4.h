@@ -1,6 +1,8 @@
 #ifndef CYCLONE_MATH_VECTOR4
 #define CYCLONE_MATH_VECTOR4
 
+#include "CycloneMath.h"
+
 #include <glm/vec4.hpp>
 
 using glm::vec4;
@@ -18,20 +20,20 @@ namespace CycloneEngine
 		static Vector4 forward;
 		static Vector4 back;
 
-		Vector4();
-		Vector4(float _x, float _y, float _z, float _w);
-		~Vector4();
+		CYCLONE_DLL Vector4();
+		CYCLONE_DLL Vector4(float _x, float _y, float _z, float _w);
+		CYCLONE_DLL ~Vector4();
 
 		float x;
 		float y;
 		float z;
 		float w;
 
-		float magnitude();
-		void normalize();
-		static float dot(Vector4 _lhs, Vector4 _rhs);
-		static float angle(Vector4 _lhs, Vector4 _rhs);
-		static float distance(Vector4 _lhs, Vector4 _rhs);
+		CYCLONE_DLL float magnitude();
+		CYCLONE_DLL void normalize();
+		CYCLONE_DLL static float dot(Vector4 _lhs, Vector4 _rhs);
+		CYCLONE_DLL static float angle(Vector4 _lhs, Vector4 _rhs);
+		CYCLONE_DLL static float distance(Vector4 _lhs, Vector4 _rhs);
 
 		Vector4 operator*(const float _rhs) const { return Vector4{ x * _rhs, y * _rhs, z * _rhs, w }; }
 		Vector4 operator*=(const float _rhs) const { return Vector4{ x * _rhs, y * _rhs, z * _rhs, w }; }

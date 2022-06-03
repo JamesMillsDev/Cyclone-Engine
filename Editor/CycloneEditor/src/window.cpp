@@ -4,7 +4,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <Windows.h>
+
 #include "Debug.h"
+#include "../resource.h"
 
 namespace CycloneEditor
 {
@@ -42,6 +45,12 @@ namespace CycloneEditor
 		/* Tell GL to only draw onto a pixel if the shape is closer to the viewer */
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LESS);
+
+		HINSTANCE hInstance = GetModuleHandle(NULL);
+		HWND hWnd = FindWindowA(NULL, "Cyclone Engine");
+		HICON hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(MAINICON));
+		SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+		SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 
 		editorInstance = new CycloneEditor::Editor(windowInstance);
 		editorInstance->init(windowInstance);

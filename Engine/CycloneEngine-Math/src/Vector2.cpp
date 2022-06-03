@@ -1,63 +1,81 @@
 #include "Vector2.h"
 
-#include <cmath>
 #include "Mathf.h"
 
 namespace CycloneEngine
 {
-	Vector2 Vector2::zero = Vector2(0, 0);
-	Vector2 Vector2::one = Vector2(1, 1);
-	Vector2 Vector2::up = Vector2(0, 1);
-	Vector2 Vector2::down = Vector2(0, -1);
-	Vector2 Vector2::right = Vector2(1, 0);
-	Vector2 Vector2::left = Vector2(-1, 0);
-
 	Vector2::Vector2()
 	{
-		x = 0;
-		y = 0;
+		x = 0.0f;
+		y = 0.0f;
 	}
 
-	Vector2::Vector2(const float _x, const float _y)
+	Vector2::Vector2(float _x, float _y)
 	{
 		x = _x;
 		y = _y;
 	}
 
-	Vector2::~Vector2() = default;
-
-	float Vector2::magnitude() const
+	float Vector2::magnitude()
 	{
-		return sqrt(x * x + y * y);
+		return sqrt(Dot(*this, *this));
+	}
+
+	float Vector2::magnitudeSq()
+	{
+		return Dot(*this, *this);
 	}
 
 	void Vector2::normalize()
 	{
-		Vector2 output = Vector2{ x, y } / magnitude();
-		x = output.x;
-		y = output.y;
+		Vector2 normalized = Normalized(*this);
+		x = normalized.x;
+		y = normalized.y;
 	}
 
-	float Vector2::dot(const Vector2 _lhs, const Vector2 _rhs)
+	float Vector2::Dot(const Vector2& _lhs, const Vector2& _rhs)
 	{
-		return (_lhs.x * _rhs.x) + (_lhs.y * _rhs.y);
+		return _lhs.x * _rhs.x + _lhs.y * _rhs.y;
 	}
 
-	float Vector2::angle(const Vector2 _lhs, const Vector2 _rhs)
+	float Vector2::Distance(const Vector2& _lhs, const Vector2& _rhs)
 	{
-		float denominator = (float)sqrt(_lhs.magnitude() * _rhs.magnitude());
-		if (denominator < FLT_EPSILON)
-			return 0;
-
-		float dotProd = Mathf::clamp(dot(_lhs, _rhs) / denominator, -1, 1);
-		return acos(dotProd) * Mathf::radToDeg;
+		return (_lhs - _rhs).magnitude();
 	}
 
-	float Vector2::distance(const Vector2 _lhs, const Vector2 _rhs)
+	Vector2 Vector2::Normalized(const Vector2& _lhs)
 	{
-		float xDiff = _lhs.x - _rhs.x;
-		float yDiff = _lhs.y - _rhs.y;
+		Vector2 other = _lhs;
+		return other * (1.0f / other.magnitude());
+	}
 
-		return sqrt(xDiff * xDiff + yDiff * yDiff);
+	Vector2 operator+(const Vector2& _lhs, const Vector2& _rhs)
+	{
+		return Vector2{ _lhs.x + _rhs.x, _lhs.y + _rhs.y };
+	}
+
+	Vector2 operator-(const Vector2& _lhs, const Vector2& _rhs)
+	{
+		return Vector2{ _lhs.x - _rhs.x, _lhs.y - _rhs.y };
+	}
+
+	Vector2 operator*(const Vector2& _lhs, const Vector2& _rhs)
+	{
+		return Vector2{ _lhs.x * _rhs.x, _lhs.y * _rhs.y };
+	}
+
+	Vector2 operator*(const Vector2& _lhs, const float _rhs)
+	{
+		return Vector2{ _lhs.x * _rhs, _lhs.y * _rhs };
+	}
+
+	bool operator==(const Vector2& _lhs, const Vector2& _rhs)
+	{
+		return CMP(_lhs.x, _rhs.x) && CMP(_lhs.y, _rhs.y);
+	}
+
+	bool operator!=(const Vector2& _lhs, const Vector2& _rhs)
+	{
+		return !CMP(_lhs.x, _rhs.x) || !CMP(_lhs.y, _rhs.y);
 	}
 }

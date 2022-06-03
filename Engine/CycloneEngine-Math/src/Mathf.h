@@ -3,9 +3,13 @@
 
 #include "CycloneMath.h"
 
+#include <cmath>
+#include <cfloat>
+
 namespace CycloneEngine
 {
 #define PI 3.14159265358979
+#define CMP(x, y) (fabsf(x-y) <= FLT_EPSILON * fmaxf(1.0f, fmaxf(fabsf(x), fabsf(y))))
 
 	class Mathf
 	{

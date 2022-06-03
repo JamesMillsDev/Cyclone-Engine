@@ -163,6 +163,7 @@
     <ClInclude Include="dep\imgui\imstb_rectpack.h" />
     <ClInclude Include="dep\imgui\imstb_textedit.h" />
     <ClInclude Include="dep\imgui\imstb_truetype.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="src\Debug.h" />
     <ClInclude Include="src\Editor.h" />
     <ClInclude Include="src\EditorSettings.h" />
@@ -191,6 +192,12 @@
     <ClCompile Include="src\windows\ConsoleWindow.cpp" />
     <ClCompile Include="src\windows\MenuWindow.cpp" />
     <ClCompile Include="src\windows\SceneWindow.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="CycloneEditor.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\..\assets\icon.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

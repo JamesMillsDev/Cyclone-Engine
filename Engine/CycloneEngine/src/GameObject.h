@@ -14,9 +14,11 @@ namespace CycloneEngine
 	{
 	public:
 
+	protected:
+		Transform* m_transform = nullptr;
+		
 	private:
-		Transform* transform;
-		Components components;
+		Components m_components;
 
 	};
 }

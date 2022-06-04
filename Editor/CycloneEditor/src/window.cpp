@@ -53,7 +53,7 @@ namespace CycloneEditor
 		SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 
 		editorInstance = new CycloneEditor::Editor(windowInstance);
-		editorInstance->init(windowInstance);
+		editorInstance->Init(windowInstance);
 
 		return true;
 	}
@@ -66,7 +66,7 @@ namespace CycloneEditor
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			editorInstance->run();
+			editorInstance->Run();
 
 			/* Swap front and back buffers */
 			glfwSwapBuffers(windowInstance);
@@ -78,7 +78,7 @@ namespace CycloneEditor
 
 	void Window::cleanup() const
 	{
-		editorInstance->cleanup(windowInstance);
+		editorInstance->Cleanup(windowInstance);
 
 		glfwDestroyWindow(windowInstance);
 		glfwTerminate();

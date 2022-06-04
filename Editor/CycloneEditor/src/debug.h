@@ -5,8 +5,12 @@
 #include <vector>
 #include "imgui/imgui.h"
 
+using std::string;
+using std::vector;
+
 namespace CycloneEngine
 {
+	
 	enum class LogLevel
 	{
 		Info = 0,
@@ -17,37 +21,39 @@ namespace CycloneEngine
 
 	class std::tm;
 	class LogMessage;
+	
+	typedef vector<LogMessage*> LogMessages;
 
 	class Debug
 	{
 	public:
-		static void setLevel(LogLevel _level);
-		static void log(const char* _message);
-		static void logWarning(const char* _message);
-		static void logError(const char* _message);
-		static void logException(const char* _message);
-		static std::vector<LogMessage*> getMessages() { return messages; }
+		static void SetLevel(LogLevel _level);
+		static void Log(const char* _message);
+		static void LogWarning(const char* _message);
+		static void LogError(const char* _message);
+		static void LogException(const char* _message);
+		static LogMessages GetMessages() { return m_messages; }
 
 	private:
-		static void storeMessage(const char* _message, LogLevel _level);
-		static std::string getTime();
-		static LogLevel level;
-		static std::vector<LogMessage*> messages;
+		static void StoreMessage(const char* _message, LogLevel _level);
+		static string GetTime();
+		static LogLevel m_level;
+		static LogMessages m_messages;
 
 	};
 
 	class LogMessage
 	{
 	public:
-		LogMessage(LogLevel _level, const char* _message, std::string _time);
-		void render() const;
+		LogMessage(LogLevel _level, const char* _message, string _time);
+		void Render() const;
 
 	private:
-		ImVec4* getColor() const;
-		const char* getLevelText() const;
-		LogLevel level;
-		std::string message;
-		std::string time;
+		ImVec4* GetColor() const;
+		const char* GetLevelText() const;
+		LogLevel m_level;
+		string m_message;
+		string m_time;
 
 	};
 }

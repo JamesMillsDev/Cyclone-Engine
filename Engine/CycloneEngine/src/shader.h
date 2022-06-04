@@ -9,9 +9,9 @@ namespace CycloneEngine
 {
 	enum class ShaderType
 	{
-		INVALID = -1,
-		VERTEX,
-		FRAGMENT
+		Invalid = -1,
+		Vertex,
+		Fragment
 	};
 
 	class Shader
@@ -22,7 +22,7 @@ namespace CycloneEngine
 		CYCLONE_DLL explicit operator unsigned int() const { return id; }
 
 	private:
-		CYCLONE_DLL void load();
+		CYCLONE_DLL void Load();
 		unsigned int id;
 		ShaderType type;
 		const char* file;
@@ -33,9 +33,9 @@ namespace CycloneEngine
 	{
 	public:
 		CYCLONE_DLL ShaderProgram();
-		CYCLONE_DLL void append(const Shader* _shader, bool _autoCompile = true);
-		CYCLONE_DLL void compile();
-		CYCLONE_DLL void bind() const;
+		CYCLONE_DLL void Append(const Shader* _shader, bool _autoCompile = true);
+		CYCLONE_DLL void Compile();
+		CYCLONE_DLL void Bind() const;
 
 	private:
 		unsigned int id;

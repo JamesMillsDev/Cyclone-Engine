@@ -10,10 +10,10 @@ namespace CycloneEngine
 {
 	Shader::Shader(const char* _file, const ShaderType _type) : id(0), type(_type), file(_file)
 	{
-		load();
+		Load();
 	}
 
-	void Shader::load()
+	void Shader::Load()
 	{
 		std::ifstream t(file);
 		t.seekg(0, std::ios::end);
@@ -25,15 +25,15 @@ namespace CycloneEngine
 		id = 0;
 		switch (type)
 		{
-		case ShaderType::VERTEX:
+		case ShaderType::Vertex:
 			id = glCreateShader(GL_VERTEX_SHADER);
 			break;
 
-		case ShaderType::FRAGMENT:
+		case ShaderType::Fragment:
 			id = glCreateShader(GL_FRAGMENT_SHADER);
 			break;
 
-		case ShaderType::INVALID: 
+		case ShaderType::Invalid: 
 			return;
 		}
 
@@ -47,15 +47,15 @@ namespace CycloneEngine
 
 	}
 
-	void ShaderProgram::append(const Shader* _shader, const bool _autoCompile)
+	void ShaderProgram::Append(const Shader* _shader, const bool _autoCompile)
 	{
 		shaders.push_back(*_shader);
 
 		if(_autoCompile)
-			compile();
+			Compile();
 	}
 
-	void ShaderProgram::compile()
+	void ShaderProgram::Compile()
 	{
 		if(id != 0)
 			glDeleteProgram(id);
@@ -70,7 +70,7 @@ namespace CycloneEngine
 		glLinkProgram(id);
 	}
 
-	void ShaderProgram::bind() const
+	void ShaderProgram::Bind() const
 	{
 		glUseProgram(id);
 	}

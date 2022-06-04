@@ -11,26 +11,26 @@ namespace CycloneEngine
 		z = 0.0f;
 	}
 
-	Vector3::Vector3(float _x, float _y, float _z)
+	Vector3::Vector3(const float _x, const float _y, const float _z)
 	{
 		x = _x;
 		y = _y;
 		z = _z;
 	}
 
-	float Vector3::magnitude()
+	float Vector3::Magnitude() const
 	{
 		return sqrt(Dot(*this, *this));
 	}
 
-	float Vector3::magnitudeSq()
+	float Vector3::MagnitudeSq() const
 	{
 		return Dot(*this, *this);
 	}
 
-	void Vector3::normalize()
+	void Vector3::Normalize()
 	{
-		Vector3 normalized = Normalized(*this);
+		const Vector3 normalized = Normalized(*this);
 		x = normalized.x;
 		y = normalized.y;
 	}
@@ -42,13 +42,13 @@ namespace CycloneEngine
 
 	float Vector3::Distance(const Vector3& _lhs, const Vector3& _rhs)
 	{
-		return (_lhs - _rhs).magnitude();
+		return (_lhs - _rhs).Magnitude();
 	}
 
 	Vector3 Vector3::Normalized(const Vector3& _lhs)
 	{
-		Vector3 other = _lhs;
-		return other * (1.0f / other.magnitude());
+		const Vector3 other = _lhs;
+		return other * (1.0f / other.Magnitude());
 	}
 
 	Vector3 Vector3::Cross(const Vector3& _lhs, const Vector3& _rhs)
@@ -64,11 +64,31 @@ namespace CycloneEngine
 
 	float Vector3::Angle(const Vector3& _lhs, const Vector3& _rhs)
 	{
-		Vector3 left = _lhs;
-		Vector3 right = _rhs;
+		const Vector3 left = _lhs;
+		const Vector3 right = _rhs;
 
-		float m = sqrtf(left.magnitudeSq() * right.magnitudeSq());
+		const float m = sqrtf(left.MagnitudeSq() * right.MagnitudeSq());
 		return acosf(Dot(_lhs, _rhs) / m);
+	}
+
+	Vector3 Vector3::Project(const Vector3& _length, const Vector3& _direction)
+	{
+		const Vector3 magVec = _direction;
+
+		const float dot = Dot(_length, _direction);
+		const float magSq = magVec.MagnitudeSq();
+		return _direction * (dot / magSq);
+	}
+
+	Vector3 Vector3::Perpendicular(const Vector3& _length, const Vector3& _direction)
+	{
+		return _length - Project(_length, _direction);
+	}
+
+	Vector3 Vector3::Reflect(const Vector3& _vector, const Vector3& _normal)
+	{
+		const float d = Dot(_vector, _normal);
+		return _vector - _normal * (d * 2.0f );
 	}
 
 	Vector3 operator+(const Vector3& _lhs, const Vector3& _rhs)

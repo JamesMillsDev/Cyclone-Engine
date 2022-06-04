@@ -6,10 +6,10 @@ namespace CycloneEngine
 	class Component
 	{
 	public:
-		const char* getName() const { return name; }
+		const char* GetName() const { return m_name; }
 
 	private:
-		const char* name;
+		const char* m_name = nullptr;
 
 	};
 }

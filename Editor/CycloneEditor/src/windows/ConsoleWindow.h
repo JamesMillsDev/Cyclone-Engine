@@ -8,7 +8,7 @@ namespace CycloneEditor
 	class ConsoleWindow final : public EditorWindow
 	{
 	public:
-		void render() const override;
+		void Render() const override;
 
 	};
 }

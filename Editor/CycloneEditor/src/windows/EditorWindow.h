@@ -7,7 +7,7 @@ namespace CycloneEditor
 	{
 	public:
 		virtual ~EditorWindow() = default;
-		virtual void render() const = 0;
+		virtual void Render() const = 0;
 
 	};
 }

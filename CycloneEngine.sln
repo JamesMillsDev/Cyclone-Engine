@@ -20,6 +20,12 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CycloneEditor", "Editor\Cyc
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CycloneEngine-Math", "Engine\CycloneEngine-Math\CycloneEngine-Math.vcxproj", "{27141134-30C0-49EC-8EDB-037C7F7FF0D9}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "CycloneEngine-Physics", "Engine\CycloneEngine-Physics\CycloneEngine-Physics.vcxproj", "{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}"
+	ProjectSection(ProjectDependencies) = postProject
+		{27141134-30C0-49EC-8EDB-037C7F7FF0D9} = {27141134-30C0-49EC-8EDB-037C7F7FF0D9}
+		{BC799793-227C-4D44-956E-0EAA523D1B6A} = {BC799793-227C-4D44-956E-0EAA523D1B6A}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -52,6 +58,14 @@ Global
 		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Release|x64.Build.0 = Release|x64
 		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Release|x86.ActiveCfg = Release|Win32
 		{27141134-30C0-49EC-8EDB-037C7F7FF0D9}.Release|x86.Build.0 = Release|Win32
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}.Debug|x64.ActiveCfg = Debug|x64
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}.Debug|x64.Build.0 = Debug|x64
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}.Debug|x86.ActiveCfg = Debug|Win32
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}.Debug|x86.Build.0 = Debug|Win32
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}.Release|x64.ActiveCfg = Release|x64
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}.Release|x64.Build.0 = Release|x64
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}.Release|x86.ActiveCfg = Release|Win32
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,6 +74,7 @@ Global
 		{BC799793-227C-4D44-956E-0EAA523D1B6A} = {CF568A4A-9B37-4F65-BEC0-B70C23D28E4C}
 		{AE558F81-ED90-44E1-A2AC-5B35086515F1} = {624487E4-CF89-400C-93AA-E0E942C0A124}
 		{27141134-30C0-49EC-8EDB-037C7F7FF0D9} = {CF568A4A-9B37-4F65-BEC0-B70C23D28E4C}
+		{7A1E9328-C98C-43B0-87E7-EBCFE25C4819} = {CF568A4A-9B37-4F65-BEC0-B70C23D28E4C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {EA08CA66-FCC3-4B2C-909E-161885783F52}

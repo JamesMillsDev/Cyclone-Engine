@@ -143,6 +143,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\MatrixMath.cpp" />
     <ClCompile Include="src\Mathf.cpp" />
     <ClCompile Include="src\Matrix2X2.cpp" />
     <ClCompile Include="src\Matrix3X3.cpp" />
@@ -151,6 +152,7 @@
     <ClCompile Include="src\Vector3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\MatrixMath.h" />
     <ClInclude Include="src\CycloneMath.h" />
     <ClInclude Include="src\Mathf.h" />
     <ClInclude Include="src\Matrix2X2.h" />
@@ -158,6 +160,9 @@
     <ClInclude Include="src\Matrix4X4.h" />
     <ClInclude Include="src\Vector2.h" />
     <ClInclude Include="src\Vector3.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

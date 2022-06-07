@@ -138,5 +138,8 @@
     <Image Include="..\..\assets\icon.ico">
       <Filter>Resource Files</Filter>
     </Image>
+    <Image Include="..\..\assets\icon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
   </ItemGroup>
 </Project>

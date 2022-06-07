@@ -21,12 +21,20 @@ LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
 
 /////////////////////////////////////////////////////////////////////////////
 //
+// PNG
+//
+
+IDB_PNG1                PNG                     "C:\\Users\\james.mills\\Documents\\git\\Cyclone-Engine\\assets\\icon.png"
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
 // Icon
 //
 
 // Icon with lowest ID value placed first to ensure application icon
 // remains consistent on all systems.
-MAINICON               ICON                    "C:\\Users\\james.mills\\Documents\\GitHub\\Cyclone-Engine\\assets\\icon.ico"
+IDI_ICON1               ICON                    "C:\\Users\\james.mills\\Documents\\git\\Cyclone-Engine\\assets\\icon.ico"
 
 #endif    // English (United States) resources
 /////////////////////////////////////////////////////////////////////////////

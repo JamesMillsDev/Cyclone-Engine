@@ -1,7 +1,7 @@
 #ifndef CYCLONE_EDITOR_SETTINGS
 #define CYCLONE_EDITOR_SETTINGS
 
-#include <Vector2.h>
+#include <float2.h>
 #include <string>
 
 class GLFWwindow;

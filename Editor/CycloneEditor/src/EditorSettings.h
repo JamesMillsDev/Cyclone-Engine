@@ -20,13 +20,13 @@ namespace CycloneEditor
 		void Serialize(GLFWwindow* _window) const;
 		void Deserialize(GLFWwindow* _window) const;
 
-		Vector2 GetLastWindowPos() const { return windowPos; }
-		Vector2 GetLastWindowSize() const { return windowSize; }
+		float2 GetLastWindowPos() const { return windowPos; }
+		float2 GetLastWindowSize() const { return windowSize; }
 
 	private:
 		string GetFilePath() const;
-		Vector2 windowPos;
-		Vector2 windowSize;
+		float2 windowPos;
+		float2 windowSize;
 
 	};
 }

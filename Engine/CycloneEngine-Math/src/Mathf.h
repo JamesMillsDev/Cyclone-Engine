@@ -8,8 +8,9 @@
 
 namespace CycloneEngine
 {
-#define PI 3.14159265358979
+#define PI 3.14159265358979f
 #define CMP(x, y) (fabsf((x)-(y)) <= FLT_EPSILON * fmaxf(1.0f, fmaxf(fabsf(x), fabsf(y))))
+#define DEG2RAD(x) ((x) * 0.0174533f)
 
 	class Mathf
 	{
@@ -18,7 +19,6 @@ namespace CycloneEngine
 		static float radToDeg;
 
 		CYCLONE_DLL static float Clamp(float _val, float _min, float _max);
-		CYCLONE_DLL static void Transpose(const float *_srcMat, float *_dstMat, int _srcRows, int _srcCols);
 	};
 }
 

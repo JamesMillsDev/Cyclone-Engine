@@ -18,19 +18,19 @@
     <ClCompile Include="src\Mathf.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Vector2.cpp">
+    <ClCompile Include="src\float2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Vector3.cpp">
+    <ClCompile Include="src\float3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Matrix2X2.cpp">
+    <ClCompile Include="src\float2x2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Matrix3X3.cpp">
+    <ClCompile Include="src\float3x3.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Matrix4X4.cpp">
+    <ClCompile Include="src\float4x4.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\MatrixMath.cpp">
@@ -41,22 +41,22 @@
     <ClInclude Include="src\Mathf.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vector2.h">
+    <ClInclude Include="src\float2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Vector3.h">
+    <ClInclude Include="src\float3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\CycloneMath.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Matrix2X2.h">
+    <ClInclude Include="src\float2x2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Matrix3X3.h">
+    <ClInclude Include="src\float3x3.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Matrix4X4.h">
+    <ClInclude Include="src\float4x4.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\MatrixMath.h">

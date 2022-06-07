@@ -78,6 +78,11 @@ namespace CycloneEngine
             MatrixMath::YRotation(_yaw);
     }
 
+    float4x4 float4x4::Rotation(const float3& _euler)
+    {
+        return Rotation(_euler.x, _euler.y, _euler.z);
+    }
+
     float4x4 float4x4::AxisAngle(const float3& _axis, float _angle)
     {
         _angle = DEG2RAD(_angle);
@@ -101,6 +106,84 @@ namespace CycloneEngine
             t * x * y - s * z, t * (y * y) + c, t * y * z + s * x, 0.0f,
             t * x * z + s * y, t * y * z + s * x, t * (z * z) + c, 0.0f,
             0.0f, 0.0f, 0.0f, 1.0f
+        );
+    }
+
+    float3 float4x4::MultiplyPoint(const float3& _vector, const float4x4& _matrix)
+    {
+        float3 result;
+        result.x = _vector.x * _matrix.m11 + _vector.y * _matrix.m21 + _vector.z * _matrix.m31 + 1.0f * _matrix.m41;
+        result.y = _vector.x * _matrix.m12 + _vector.y * _matrix.m22 + _vector.z * _matrix.m32 + 1.0f * _matrix.m42;
+        result.z = _vector.x * _matrix.m13 + _vector.y * _matrix.m23 + _vector.z * _matrix.m33 + 1.0f * _matrix.m43;
+        return result;
+    }
+
+    float3 float4x4::MultiplyVector(const float3& _vector, const float4x4& _matrix)
+    {
+        float3 result;
+        result.x = _vector.x * _matrix.m11 + _vector.y * _matrix.m21 + _vector.z * _matrix.m31 + 0.0f * _matrix.m41;
+        result.y = _vector.x * _matrix.m12 + _vector.y * _matrix.m22 + _vector.z * _matrix.m32 + 0.0f * _matrix.m42;
+        result.z = _vector.x * _matrix.m13 + _vector.y * _matrix.m23 + _vector.z * _matrix.m33 + 0.0f * _matrix.m43;
+        return result;
+    }
+
+    float4x4 float4x4::TRS(const float3& _translation, const float3& _euler, const float3& _scale)
+    {
+        return Scale(_scale) * Rotation(_euler) * Translation(_translation);
+    }
+
+    float4x4 float4x4::TRS(const float3& _translation, const float3& _axis, float _angle, const float3& _scale)
+    {
+        return Scale(_scale) * AxisAngle(_axis, _angle) * Translation(_translation);
+    }
+
+    float4x4 float4x4::LookAt(const float3& _position, const float3& _target, const float3& _up)
+    {
+        float3 forward = float3::Normalized(_target - _position);
+        float3 right = float3::Normalized(float3::Cross(_up, forward));
+        float3 newUp = float3::Cross(forward, right);
+
+        return float4x4( // Transposed rotation!
+            right.x, newUp.x, forward.x, 0.0f,
+            right.y, newUp.y, forward.y, 0.0f,
+            right.z, newUp.z, forward.z, 0.0f,
+            -float3::Dot(right, _position),
+            -float3::Dot(newUp, _position),
+            -float3::Dot(forward, _position), 1.0f
+        );
+    }
+
+    float4x4 float4x4::Projection(float _fov, float _aspect, float _near, float _far)
+    {
+        float tanHalfFov = tanf(DEG2RAD((_fov * 0.5f)));
+        float fovY = 1.0f / tanHalfFov; // cot(fov/2)
+        float fovX = fovY / _aspect; // cot(fov/2) / aspect
+        float4x4 result;
+        result.m11 = fovX;
+        result.m22 = fovY;
+        // _33 = far / range
+        result.m33 = _far / (_far - _far);
+        result.m34 = 1.0f;
+        // _43 = - near * (far / range)
+        result.m43 = -_far * result.m33;
+        result.m44 = 0.0f;
+        return result;
+    }
+
+    float4x4 float4x4::Ortho(float _left, float _right, float _bottom, float _top, float _near, float _far)
+    {
+        float m11 = 2.0f / (_right - _left);
+        float m22 = 2.0f / (_top - _bottom);
+        float m33 = 1.0f / (_far - _near);
+        float m41 = (_left + _right) / (_left - _right);
+        float m42 = (_top + _bottom) / (_bottom - _top);
+        float m43 = (_near) / (_near - _far);
+
+        return float4x4(
+            m11, 0.0f, 0.0f, 0.0f,
+            0.0f, m22, 0.0f, 0.0f,
+            0.0f, 0.0f, m33, 0.0f,
+            m41, m42, m43, 1.0f
         );
     }
 

@@ -72,7 +72,19 @@ namespace CycloneEngine
         CYCLONE_DLL static float3 GetScale(const float4x4& _matrix);
 
         CYCLONE_DLL static float4x4 Rotation(float _pitch, float _yaw, float _roll);
+        CYCLONE_DLL static float4x4 Rotation(const float3& _euler);
         CYCLONE_DLL static float4x4 AxisAngle(const float3& _axis, float _angle);
+
+        CYCLONE_DLL static float3 MultiplyPoint(const float3& _vector, const float4x4& _matrix);
+        CYCLONE_DLL static float3 MultiplyVector(const float3& _vector, const float4x4& _matrix);
+
+        CYCLONE_DLL static float4x4 TRS(const float3& _translation, const float3& _euler, const float3& _scale);
+        CYCLONE_DLL static float4x4 TRS(const float3& _translation, const float3& _axis, float _angle, const float3& _scale);
+
+        CYCLONE_DLL static float4x4 LookAt(const float3& _position, const float3& _target, const float3& _up);
+
+        CYCLONE_DLL static float4x4 Projection(float _fov, float _aspect, float _near, float _far);
+        CYCLONE_DLL static float4x4 Ortho(float _left, float _right, float _bottom, float _top, float _near, float _far);
         
     } float4x4;
 

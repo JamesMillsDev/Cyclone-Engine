@@ -55,6 +55,8 @@ namespace CycloneEngine
 
         CYCLONE_DLL static float3x3 Rotation(float _pitch, float _yaw, float _roll);
         CYCLONE_DLL static float3x3 AxisAngle(const float3& _axis, float _angle);
+
+        CYCLONE_DLL static float3 MultiplyVector(const float3& _vector, const float3x3& _matrix);
         
     } float3x3;
 

@@ -54,6 +54,15 @@ namespace CycloneEngine
 		);
 	}
 
+	float3 float3x3::MultiplyVector(const float3& _vector, const float3x3& _matrix)
+	{
+		float3 result;
+		result.x = float3::Dot(_vector, float3(_matrix.m11, _matrix.m21, _matrix.m31));
+		result.y = float3::Dot(_vector, float3(_matrix.m12, _matrix.m22, _matrix.m32));
+		result.z = float3::Dot(_vector, float3(_matrix.m13, _matrix.m23, _matrix.m33));
+		return result;
+	}
+
 	float3x3 operator*(const float3x3& _matrix, float _scalar)
 	{
 		float3x3 result;

@@ -4,7 +4,10 @@
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
+#include <Windows.h>
+
 #include "Debug.h"
+#include "../resource.h"
 
 namespace CycloneEditor
 {
@@ -43,8 +46,14 @@ namespace CycloneEditor
 		glEnable(GL_DEPTH_TEST);
 		glDepthFunc(GL_LESS);
 
+		HINSTANCE hInstance = GetModuleHandle(NULL);
+		HWND hWnd = FindWindowA(NULL, "Cyclone Engine");
+		HICON hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(MAINICON));
+		SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
+		SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
+
 		editorInstance = new CycloneEditor::Editor(windowInstance);
-		editorInstance->init(windowInstance);
+		editorInstance->Init(windowInstance);
 
 		return true;
 	}
@@ -57,7 +66,7 @@ namespace CycloneEditor
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			editorInstance->run();
+			editorInstance->Run();
 
 			/* Swap front and back buffers */
 			glfwSwapBuffers(windowInstance);
@@ -69,7 +78,7 @@ namespace CycloneEditor
 
 	void Window::cleanup() const
 	{
-		editorInstance->cleanup(windowInstance);
+		editorInstance->Cleanup(windowInstance);
 
 		glfwDestroyWindow(windowInstance);
 		glfwTerminate();

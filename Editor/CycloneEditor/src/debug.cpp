@@ -6,40 +6,40 @@
 
 namespace CycloneEngine
 {
-	LogLevel Debug::level = LogLevel::Info;
-	std::vector<LogMessage*> Debug::messages;
+	LogLevel Debug::m_level = LogLevel::Info;
+	std::vector<LogMessage*> Debug::m_messages;
 
-	void Debug::set_level(const LogLevel _level)
+	void Debug::SetLevel(const LogLevel _level)
 	{
-		level = _level;
+		m_level = _level;
 	}
 
-	void Debug::log(const char* _message)
+	void Debug::Log(const char* _message)
 	{
-		store_message(_message, LogLevel::Info);
+		StoreMessage(_message, LogLevel::Info);
 	}
 
-	void Debug::log_warning(const char* _message)
+	void Debug::LogWarning(const char* _message)
 	{
-		store_message(_message, LogLevel::Warning);
+		StoreMessage(_message, LogLevel::Warning);
 	}
 
-	void Debug::log_error(const char* _message)
+	void Debug::LogError(const char* _message)
 	{
-		store_message(_message, LogLevel::Error);
+		StoreMessage(_message, LogLevel::Error);
 	}
 
-	void Debug::log_exception(const char* _message)
+	void Debug::LogException(const char* _message)
 	{
-		store_message(_message, LogLevel::Exception);
+		StoreMessage(_message, LogLevel::Exception);
 	}
 
-	void Debug::store_message(const char* _message, const LogLevel _level)
+	void Debug::StoreMessage(const char* _message, const LogLevel _level)
 	{
-		messages.push_back(new LogMessage(_level, _message, get_time()));
+		m_messages.push_back(new LogMessage(_level, _message, GetTime()));
 	}
 
-	std::string Debug::get_time()
+	std::string Debug::GetTime()
 	{
 		std::time_t t = std::time(nullptr);
 		std::tm now = std::tm();
@@ -64,25 +64,25 @@ namespace CycloneEngine
 	}
 
 	LogMessage::LogMessage(const LogLevel _level, const char* _message, std::string _time)
-		: level(_level), message(_message), time(std::move(_time))
+		: m_level(_level), m_message(_message), m_time(std::move(_time))
 	{
 		
 	}
 
-	void LogMessage::render() const
+	void LogMessage::Render() const
 	{
-		std::string constructedMessage = time;
+		std::string constructedMessage = m_time;
 		constructedMessage += "[";
-		constructedMessage += get_level_text();
+		constructedMessage += GetLevelText();
 		constructedMessage += "] ";
-		constructedMessage += message;
+		constructedMessage += m_message;
 
-		ImGui::TextColored(*get_color(), constructedMessage.c_str());
+		ImGui::TextColored(*GetColor(), constructedMessage.c_str());
 	}
 
-	ImVec4* LogMessage::get_color() const
+	ImVec4* LogMessage::GetColor() const
 	{
-		switch (level)
+		switch (m_level)
 		{
 		case LogLevel::Info: return new ImVec4(1, 1, 1, 1);
 		case LogLevel::Warning: return new ImVec4(1, 1, 0, 1);
@@ -93,9 +93,9 @@ namespace CycloneEngine
 		return new ImVec4(1, 1, 1, 1);
 	}
 
-	const char* LogMessage::get_level_text() const
+	const char* LogMessage::GetLevelText() const
 	{
-		switch (level)
+		switch (m_level)
 		{
 		case LogLevel::Info: return "INFO";
 		case LogLevel::Warning: return "WARNING";

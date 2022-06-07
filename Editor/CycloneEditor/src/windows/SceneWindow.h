@@ -8,7 +8,7 @@ namespace CycloneEditor
 	class SceneWindow final : public EditorWindow
 	{
 	public:
-		void render() const override;
+		void Render() const override;
 	};
 }
 

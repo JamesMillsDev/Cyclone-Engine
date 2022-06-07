@@ -6,7 +6,7 @@
 
 namespace CycloneEditor
 {
-	void MenuWindow::render() const
+	void MenuWindow::Render() const
 	{
 		static ImGuiDockNodeFlags dockspaceFlags = ImGuiDockNodeFlags_None;
 
@@ -34,7 +34,7 @@ namespace CycloneEditor
 			{
 				if(ImGui::MenuItem("Exit", nullptr))
 				{
-					glfwSetWindowShouldClose(windowInstance, 1);
+					glfwSetWindowShouldClose(m_windowInstance, 1);
 				}
 
 				ImGui::EndMenu();

@@ -1,13 +1,14 @@
 #ifndef CYCLONE_EDITOR_SETTINGS
 #define CYCLONE_EDITOR_SETTINGS
 
+#include <Vector2.h>
 #include <string>
 
-#include <glm/vec2.hpp>
-
-using glm::vec2;
-
 class GLFWwindow;
+
+using namespace CycloneEngine;
+
+using std::string;
 
 namespace CycloneEditor
 {
@@ -16,16 +17,16 @@ namespace CycloneEditor
 	public:
 		EditorSettings() = default;
 
-		void serialize(GLFWwindow* _window) const;
-		void deserialize(GLFWwindow* _window) const;
+		void Serialize(GLFWwindow* _window) const;
+		void Deserialize(GLFWwindow* _window) const;
 
-		vec2 get_last_window_pos() const { return windowPos; }
-		vec2 get_last_window_size() const { return windowSize; }
+		float2 GetLastWindowPos() const { return windowPos; }
+		float2 GetLastWindowSize() const { return windowSize; }
 
 	private:
-		std::string get_file_path() const;
-		vec2 windowPos;
-		vec2 windowSize;
+		string GetFilePath() const;
+		float2 windowPos;
+		float2 windowSize;
 
 	};
 }

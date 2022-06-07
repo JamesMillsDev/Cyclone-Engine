@@ -9,12 +9,11 @@ namespace CycloneEditor
 	class MenuWindow final : public EditorWindow
 	{
 	public:
-		MenuWindow(GLFWwindow* _window)
-			: windowInstance(_window) {}
-		void render() const override;
+		explicit MenuWindow(GLFWwindow* _window) : m_windowInstance(_window) {}
+		void Render() const override;
 
 	private:
-		GLFWwindow* windowInstance;
+		GLFWwindow* m_windowInstance;
 	};
 }
 #endif // !CYCLONE_MENU_WINDOW

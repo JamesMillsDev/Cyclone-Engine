@@ -1,6 +1,8 @@
 #ifndef CYCLONE_INPUT
 #define CYCLONE_INPUT
 
+#include "CycloneEngine.h"
+
 #include <map>
 
 namespace CycloneEditor
@@ -140,12 +142,13 @@ namespace CycloneEngine
 	class Input
 	{
 	public:
-		static void init(GLFWwindow* _window);
-		static bool keypressed(Keycode _code);
-		static bool keyup(Keycode _code);
-		static bool keydown(Keycode _code);
+		CYCLONE_DLL static bool KeyPressed(Keycode _code);
+		CYCLONE_DLL static bool KeyUp(Keycode _code);
+		CYCLONE_DLL static bool KeyDown(Keycode _code);
 
 	private:
+		CYCLONE_DLL static void Init(GLFWwindow* _window);
+		
 		class KeyState
 		{
 		public:
@@ -154,12 +157,12 @@ namespace CycloneEngine
 			bool up;
 			bool down;
 
-			KeyState(Keycode _code);
+			explicit KeyState(Keycode _code);
 		};
 
-		static void update();
-		static void key_callback(GLFWwindow* _window, int _key, int _scancode, int _action, int _mods);
-		static map<Keycode, KeyState> keys;
+		CYCLONE_DLL static void Update();
+		CYCLONE_DLL static void KeyCallback(GLFWwindow* _window, int _key, int _scancode, int _action, int _mods);
+		CYCLONE_DLL static map<Keycode, KeyState> keys;
 
 		friend class CycloneEditor::Editor;
 	};

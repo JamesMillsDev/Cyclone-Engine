@@ -7,16 +7,16 @@
 
 namespace CycloneEditor
 {
-	void ConsoleWindow::render() const
+	void ConsoleWindow::Render() const
 	{
 		ImGui::Begin("Console");
 
-		for (CycloneEngine::LogMessage* message : CycloneEngine::Debug::get_messages())
-			message->render();
+		for (CycloneEngine::LogMessage* message : CycloneEngine::Debug::GetMessages())
+			message->Render();
 
 		ImGui::End();
 
-		if (CycloneEngine::Input::keydown(CycloneEngine::Keycode::A))
-			CycloneEngine::Debug::log_error("test");
+		if (CycloneEngine::Input::KeyDown(CycloneEngine::Keycode::A))
+			CycloneEngine::Debug::LogError("test");
 	}
 }

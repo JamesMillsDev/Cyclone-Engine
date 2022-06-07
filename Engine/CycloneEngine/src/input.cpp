@@ -10,12 +10,12 @@ namespace CycloneEngine
 	{
 	}
 
-	void Input::init(GLFWwindow* _window)
+	void Input::Init(GLFWwindow* _window)
 	{
-		glfwSetKeyCallback(_window, key_callback);
+		glfwSetKeyCallback(_window, KeyCallback);
 	}
 
-	void Input::key_callback(GLFWwindow* _window, int _key, int _scancode, const int _action, int _mods)
+	void Input::KeyCallback(GLFWwindow* _window, int _key, int _scancode, const int _action, int _mods)
 	{
 		Keycode code = static_cast<Keycode>(_key);
 		if (keys.count(code) == 0)
@@ -42,7 +42,7 @@ namespace CycloneEngine
 		}
 	}
 
-	void Input::update()
+	void Input::Update()
 	{
 		for (auto& state : keys)
 		{
@@ -54,7 +54,7 @@ namespace CycloneEngine
 		}
 	}
 
-	bool Input::keyup(const Keycode _code)
+	bool Input::KeyUp(const Keycode _code)
 	{
 		if (keys.count(_code) == 0)
 			return false;
@@ -63,7 +63,7 @@ namespace CycloneEngine
 		return state.up;
 	}
 
-	bool Input::keydown(const Keycode _code)
+	bool Input::KeyDown(const Keycode _code)
 	{
 		if (keys.count(_code) == 0)
 			return false;
@@ -72,7 +72,7 @@ namespace CycloneEngine
 		return state.down;
 	}
 
-	bool Input::keypressed(const Keycode _code)
+	bool Input::KeyPressed(const Keycode _code)
 	{
 		if (keys.count(_code) == 0)
 			return false;

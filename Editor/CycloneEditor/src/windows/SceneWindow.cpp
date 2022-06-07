@@ -4,7 +4,7 @@
 
 namespace CycloneEditor
 {
-	void SceneWindow::render() const
+	void SceneWindow::Render() const
 	{
 		ImGui::Begin("Scene");
 

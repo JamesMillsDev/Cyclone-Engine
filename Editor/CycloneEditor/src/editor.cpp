@@ -19,18 +19,18 @@ using namespace CycloneEngine;
 
 namespace CycloneEditor
 {
-	Editor::Editor(GLFWwindow* _window) : settings(new EditorSettings())
+	Editor::Editor(GLFWwindow* _window) : m_settings(new EditorSettings())
 	{
-		windows.push_back(new MenuWindow(_window));
-		windows.push_back(new ConsoleWindow());
-		windows.push_back(new SceneWindow());
+		m_windows.push_back(new MenuWindow(_window));
+		m_windows.push_back(new ConsoleWindow());
+		m_windows.push_back(new SceneWindow());
 	}
 
-	void Editor::init(GLFWwindow* _window) const
+	void Editor::Init(GLFWwindow* _window) const
 	{
-		settings->deserialize(_window);
+		m_settings->Deserialize(_window);
 
-		Input::init(_window);
+		Input::Init(_window);
 
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -45,15 +45,15 @@ namespace CycloneEditor
 		ImGui_ImplOpenGL3_Init("#version 130");
 	}
 
-	void Editor::run() const
+	void Editor::Run() const
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		for (EditorWindow* window : windows)
+		for (EditorWindow* window : m_windows)
 		{
-			window->render();
+			window->Render();
 		}
 
 		ImGui::Render();
@@ -68,12 +68,12 @@ namespace CycloneEditor
 			glfwMakeContextCurrent(backupCurrentContext);
 		}
 
-		Input::update();
+		Input::Update();
 	}
 
-	void Editor::cleanup(GLFWwindow* _window) const
+	void Editor::Cleanup(GLFWwindow* _window) const
 	{
-		settings->serialize(_window);
+		m_settings->Serialize(_window);
 
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();

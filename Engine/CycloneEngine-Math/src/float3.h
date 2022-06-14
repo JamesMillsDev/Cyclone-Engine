@@ -1,6 +1,8 @@
 #ifndef CYCLONE_MATH_FLOAT3
 #define CYCLONE_MATH_FLOAT3
 
+#include <glm/vec3.hpp>
+
 #include "CycloneMath.h"
 
 namespace CycloneEngine
@@ -28,6 +30,8 @@ namespace CycloneEngine
 
 		CYCLONE_DLL float3();
 		CYCLONE_DLL float3(float _x, float _y, float _z);
+		CYCLONE_DLL float3(const glm::vec3& _vector);
+		CYCLONE_DLL operator glm::vec3 const() const;
 
 		CYCLONE_DLL float Magnitude() const;
 		CYCLONE_DLL float MagnitudeSq() const;

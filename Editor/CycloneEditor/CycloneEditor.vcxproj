@@ -88,6 +88,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\;</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -116,7 +117,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dep\glfw-3.3.7\include;$(SolutionDir)\dep\glew-2.1.0\include;$(SolutionDir)\dep\glm\include;$(ProjectDir)\src;$(SolutionDir)\Engine\CycloneEngine\src\;$(SolutionDir)\Engine\CycloneEngine-Math\src\;$(ProjectDir)\dep\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dep\glfw-3.3.7\include;$(SolutionDir)\dep\glew-2.1.0\include;$(SolutionDir)\dep\glm\include;$(ProjectDir)\src;$(SolutionDir)\Engine\CycloneEngine\src\;$(SolutionDir)\Engine\CycloneEngine-Math\src\;$(ProjectDir)\dep\;$(SolutionDir)dep\;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -137,7 +138,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)\dep\glfw-3.3.7\include;$(SolutionDir)\dep\glew-2.1.0\include;$(SolutionDir)\dep\glm\include;$(ProjectDir)\src;$(SolutionDir)\Engine\CycloneEngine\src\;$(ProjectDir)\dep\;</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)\dep\glfw-3.3.7\include;$(SolutionDir)\dep\glew-2.1.0\include;$(SolutionDir)\dep\glm\include;$(ProjectDir)\src;$(SolutionDir)\Engine\CycloneEngine\src\;$(ProjectDir)\dep\;$(SolutionDir)dep\;</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -167,6 +168,7 @@
     <ClInclude Include="src\Debug.h" />
     <ClInclude Include="src\Editor.h" />
     <ClInclude Include="src\EditorSettings.h" />
+    <ClInclude Include="src\Gizmos.h" />
     <ClInclude Include="src\SceneCamera.h" />
     <ClInclude Include="src\Window.h" />
     <ClInclude Include="src\windows\ConsoleWindow.h" />
@@ -186,6 +188,7 @@
     <ClCompile Include="src\Debug.cpp" />
     <ClCompile Include="src\Editor.cpp" />
     <ClCompile Include="src\EditorSettings.cpp" />
+    <ClCompile Include="src\Gizmos.cpp" />
     <ClCompile Include="src\SceneCamera.cpp" />
     <ClCompile Include="src\Window.cpp" />
     <ClCompile Include="src\windows\ConsoleWindow.cpp" />

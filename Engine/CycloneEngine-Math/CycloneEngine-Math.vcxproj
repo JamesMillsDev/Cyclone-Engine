@@ -116,8 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>DLL_EXPORT;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -132,8 +131,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>
-      </AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -143,6 +141,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\color.cpp" />
     <ClCompile Include="src\MatrixMath.cpp" />
     <ClCompile Include="src\Mathf.cpp" />
     <ClCompile Include="src\float2x2.cpp" />
@@ -152,6 +151,7 @@
     <ClCompile Include="src\float3.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\color.h" />
     <ClInclude Include="src\MatrixMath.h" />
     <ClInclude Include="src\CycloneMath.h" />
     <ClInclude Include="src\Mathf.h" />

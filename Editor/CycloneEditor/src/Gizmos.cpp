@@ -6,6 +6,8 @@
 
 namespace CycloneEngine
 {
+    Gizmos* Gizmos::m_singleton;
+    
     Gizmos::Gizmos(const unsigned int _maxLines, const unsigned int _maxTris, const unsigned int _max2DLines, const unsigned int _max2DTris)
         : m_maxLines(_maxLines), m_lineCount(0), m_lines(new GizmoLine[_maxLines]), m_maxTris(_maxTris), m_triCount(0),
           m_tris(new GizmoTri[_maxTris]), m_transparentTriCount(0), m_transparentTris(new GizmoTri[_maxTris]), m_max2DLines(_max2DLines),

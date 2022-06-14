@@ -1,7 +1,7 @@
 #ifndef CYCLONE_SCENE_CAMERA
 #define CYCLONE_SCENE_CAMERA
 
-#include "Camera.h"
+#include <components/Camera.h>
 
 namespace CycloneEngine
 {

@@ -60,8 +60,8 @@ namespace CycloneEngine
         glDeleteShader(fs);
 
         // create VBOs
-        glGenBuffers(1, &m_lineVBO);
-        glBindBuffer(GL_ARRAY_BUFFER, m_lineVBO);
+        glGenBuffers(1, &m_lineVbo);
+        glBindBuffer(GL_ARRAY_BUFFER, m_lineVbo);
         glBufferData(GL_ARRAY_BUFFER, m_maxLines * sizeof(GizmoLine), m_lines, GL_DYNAMIC_DRAW);
 
         glGenBuffers(1, &m_triVbo);
@@ -80,9 +80,9 @@ namespace CycloneEngine
         glBindBuffer(GL_ARRAY_BUFFER, m_2dTriVbo);
         glBufferData(GL_ARRAY_BUFFER, m_max2DTris * sizeof(GizmoTri), m_2dTris, GL_DYNAMIC_DRAW);
 
-        glGenVertexArrays(1, &m_lineVAO);
-        glBindVertexArray(m_lineVAO);
-        glBindBuffer(GL_ARRAY_BUFFER, m_lineVBO);
+        glGenVertexArrays(1, &m_lineVao);
+        glBindVertexArray(m_lineVao);
+        glBindBuffer(GL_ARRAY_BUFFER, m_lineVbo);
         glEnableVertexAttribArray(0);
         glEnableVertexAttribArray(1);
         glVertexAttribPointer(0, 4, GL_FLOAT, GL_FALSE, sizeof(GizmoVertex), nullptr);
@@ -129,10 +129,10 @@ namespace CycloneEngine
         delete[] m_lines;
         delete[] m_tris;
         delete[] m_transparentTris;
-        glDeleteBuffers(1, &m_lineVBO);
+        glDeleteBuffers(1, &m_lineVbo);
         glDeleteBuffers(1, &m_triVbo);
         glDeleteBuffers(1, &m_transparentTriVbo);
-        glDeleteVertexArrays(1, &m_lineVAO);
+        glDeleteVertexArrays(1, &m_lineVao);
         glDeleteVertexArrays(1, &m_triVao);
         glDeleteVertexArrays(1, &m_transparentTriVao);
         delete[] m_2dLines;
@@ -770,10 +770,10 @@ namespace CycloneEngine
 
             if(m_singleton->m_lineCount > 0)
             {
-                glBindBuffer(GL_ARRAY_BUFFER, m_singleton->m_lineVBO);
+                glBindBuffer(GL_ARRAY_BUFFER, m_singleton->m_lineVbo);
                 glBufferSubData(GL_ARRAY_BUFFER, 0, m_singleton->m_lineCount * sizeof(GizmoLine), m_singleton->m_lines);
 
-                glBindVertexArray(m_singleton->m_lineVAO);
+                glBindVertexArray(m_singleton->m_lineVao);
                 glDrawArrays(GL_LINES, 0, m_singleton->m_lineCount * 2);
             }
 

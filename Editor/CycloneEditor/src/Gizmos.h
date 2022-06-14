@@ -103,8 +103,8 @@ namespace CycloneEngine
         unsigned int m_lineCount;
         GizmoLine* m_lines;
 
-        unsigned int m_lineVAO;
-        unsigned int m_lineVBO;
+        unsigned int m_lineVao;
+        unsigned int m_lineVbo;
 
         // triangle data
         unsigned int m_maxTris;

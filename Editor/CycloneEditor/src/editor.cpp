@@ -8,7 +8,6 @@
 #include "debug.h"
 
 #include "windows/ConsoleWindow.h"
-#include "windows/SceneWindow.h"
 
 #include <GLFW/glfw3.h>
 
@@ -23,7 +22,6 @@ namespace CycloneEditor
 	{
 		m_windows.push_back(new MenuWindow(_window));
 		m_windows.push_back(new ConsoleWindow());
-		m_windows.push_back(new SceneWindow());
 	}
 
 	void Editor::Init(GLFWwindow* _window) const

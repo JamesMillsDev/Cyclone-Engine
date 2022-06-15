@@ -8,6 +8,7 @@
 
 #include "Debug.h"
 #include "../resource.h"
+#include "Input.h"
 
 namespace CycloneEditor
 {
@@ -66,13 +67,15 @@ namespace CycloneEditor
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			editorInstance->Run();
-
-			/* Swap front and back buffers */
-			glfwSwapBuffers(windowInstance);
+			CycloneEngine::input->Update();
 
 			/* Poll for and process events */
 			glfwPollEvents();
+
+			editorInstance->Run(windowInstance);
+
+			/* Swap front and back buffers */
+			glfwSwapBuffers(windowInstance);
 		}
 	}
 

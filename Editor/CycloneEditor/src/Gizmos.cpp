@@ -4,7 +4,9 @@
 #include <GL/glew.h>
 #include <glm/ext.hpp>
 
-namespace CycloneEngine
+#include "SceneCamera.h"
+
+namespace CycloneEditor
 {
     Gizmos* Gizmos::m_singleton;
     
@@ -761,14 +763,17 @@ namespace CycloneEngine
         }
     }
 
-    void Gizmos::Draw(const glm::mat4& _projectionView)
+    void Gizmos::Draw(const SceneCamera& _camera)
     {
         if(m_singleton != nullptr && (m_singleton->m_lineCount > 0 || m_singleton->m_triCount > 0 || m_singleton->m_transparentTriCount > 0))
         {
+            const glm::mat4 view = _camera.m_viewMatrix;
+            const glm::mat4 projection = _camera.m_projectionMatrix;
+            
             glUseProgram(m_singleton->m_shader);
 
             const unsigned int projectionViewUniform = glGetUniformLocation(m_singleton->m_shader, "ProjectionView");
-            glUniformMatrix4fv(projectionViewUniform, 1, false, glm::value_ptr(_projectionView));
+            glUniformMatrix4fv(projectionViewUniform, 1, false, glm::value_ptr(projection * view));
 
             if(m_singleton->m_lineCount > 0)
             {
@@ -821,11 +826,6 @@ namespace CycloneEngine
 
             glUseProgram(0);
         }
-    }
-
-    void Gizmos::Draw(const glm::mat4& _projection, const glm::mat4& _view)
-    {
-        Draw(_projection * _view);
     }
 
     void Gizmos::Draw2D(const glm::mat4& _projection)

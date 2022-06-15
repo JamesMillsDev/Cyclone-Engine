@@ -4,80 +4,62 @@
 
 namespace CycloneEngine
 {
-	map<Keycode, Input::KeyState> Input::keys;
-
+	Input* input = nullptr;
+	
 	Input::KeyState::KeyState(const Keycode _code) : key(_code), held(false), up(false), down(false)
 	{
 	}
 
-	void Input::Init(GLFWwindow* _window)
+	Input::Input()
 	{
-		glfwSetKeyCallback(_window, KeyCallback);
-	}
-
-	void Input::KeyCallback(GLFWwindow* _window, int _key, int _scancode, const int _action, int _mods)
-	{
-		Keycode code = static_cast<Keycode>(_key);
-		if (keys.count(code) == 0)
-		{
-			keys.insert({code, KeyState(code)});
-		}
-
-		KeyState* key = &keys.at(code);
-
-		if (_action == GLFW_PRESS)
-		{
-			key->down = true;
-			key->held = false;
-		}
-		else if(_action == GLFW_REPEAT)
-		{
-			key->down = false;
-			key->held = true;
-		}
-		else if(_action == GLFW_RELEASE)
-		{
-			key->up = true;
-			key->held = false;
-		}
+		m_lastKeys = new int[GLFW_KEY_LAST + 1];
+		m_currentKeys = new int[GLFW_KEY_LAST + 1];
+	
+		m_mouseX = 0;
+		m_mouseY = 0;
+		m_mouseScroll = 0;
 	}
 
 	void Input::Update()
 	{
-		for (auto& state : keys)
-		{
-			if (state.second.up && state.second.held)
-				state.second.up = false;
+		m_pressedCharacters.clear();
 
-			if(state.second.down)
-				state.second.down = false;
+		const auto window = glfwGetCurrentContext();
+
+		m_pressedKeys.clear();
+
+		// update keys
+		for (int i = GLFW_KEY_SPACE; i <= GLFW_KEY_LAST; ++i) {
+
+			m_lastKeys[i] = m_currentKeys[i];
+
+			if ((m_currentKeys[i] = glfwGetKey(window, i)) == GLFW_PRESS)
+				m_pressedKeys.push_back(m_currentKeys[i]);
 		}
+
+		// update mouse
+		for (int i = 0; i < 8 ; ++i) {
+			m_lastButtons[i] = m_currentButtons[i];
+			m_currentButtons[i] = glfwGetMouseButton(window, i);
+		}
+
+		// update old mouse position
+		m_oldMouseX = m_mouseX;
+		m_oldMouseY = m_mouseY;
 	}
 
-	bool Input::KeyUp(const Keycode _code)
+	bool Input::KeyUp(const Keycode _code) const
 	{
-		if (keys.count(_code) == 0)
-			return false;
-
-		KeyState state = keys.at(_code);
-		return state.up;
+		return m_currentKeys[(int)_code] == GLFW_RELEASE;
 	}
 
-	bool Input::KeyDown(const Keycode _code)
+	bool Input::KeyDown(const Keycode _code) const
 	{
-		if (keys.count(_code) == 0)
-			return false;
-
-		KeyState state = keys.at(_code);
-		return state.down;
+		return m_lastKeys[(int)_code] == GLFW_PRESS;
 	}
 
-	bool Input::KeyPressed(const Keycode _code)
+	bool Input::KeyPressed(const Keycode _code) const
 	{
-		if (keys.count(_code) == 0)
-			return false;
-
-		KeyState state = keys.at(_code);
-		return state.held;
+		return m_currentKeys[(int)_code] == GLFW_PRESS;
 	}
 }

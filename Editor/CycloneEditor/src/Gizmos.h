@@ -3,8 +3,10 @@
 #define GLM_SWIZZLE
 #include <glm/glm.hpp>
 
-namespace CycloneEngine
+namespace CycloneEditor
 {
+    class SceneCamera;
+    
     class Gizmos
     {
     public:
@@ -15,8 +17,7 @@ namespace CycloneEngine
         static void Clear();
 
         // draws current Gizmo buffers, either using a combined (projection * view) matrix, or separate matrices
-        static void Draw(const glm::mat4& _projectionView);
-        static void Draw(const glm::mat4& _projection, const glm::mat4& _view);
+        static void Draw(const SceneCamera& _camera);
 
         // the projection matrix here should ideally be orthographic with a near of -1 and far of 1
         static void Draw2D(const glm::mat4& _projection);

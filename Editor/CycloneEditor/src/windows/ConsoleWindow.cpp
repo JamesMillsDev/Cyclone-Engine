@@ -16,7 +16,7 @@ namespace CycloneEditor
 
 		ImGui::End();
 
-		if (CycloneEngine::Input::KeyDown(CycloneEngine::Keycode::A))
+		if (CycloneEngine::input->KeyDown(CycloneEngine::Keycode::A))
 			CycloneEngine::Debug::LogError("test");
 	}
 }

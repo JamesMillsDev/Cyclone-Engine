@@ -5,6 +5,8 @@
 
 #include "float3.h"
 
+#include <glm/mat4x4.hpp>
+
 namespace CycloneEngine
 {
 #define FLOAT4X4_SIZE 4
@@ -59,6 +61,9 @@ namespace CycloneEngine
             m43 = _m43;
             m44 = _m44;
         }
+        
+        CYCLONE_DLL float4x4(const glm::mat4& _matrix);
+        CYCLONE_DLL operator glm::mat4 const() const;
 
         CYCLONE_DLL static float4x4 Transpose(const float4x4& _matrix);
         CYCLONE_DLL static float4x4 Inverse(const float4x4& _matrix);

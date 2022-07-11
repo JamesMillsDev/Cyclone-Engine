@@ -8,7 +8,6 @@
 #include "Debug.h"
 
 #include "windows/ConsoleWindow.h"
-#include "windows/SceneWindow.h"
 
 #include <GLFW/glfw3.h>
 
@@ -19,16 +18,15 @@ using namespace CycloneEngine;
 
 namespace CycloneEditor
 {
-	Editor::Editor(GLFWwindow* _window) : m_settings(new EditorSettings())
-	{
-		m_windows.push_back(new MenuWindow(_window));
-		m_windows.push_back(new ConsoleWindow());
-		m_windows.push_back(new SceneWindow());
-	}
+    Editor::Editor(GLFWwindow* _window) : m_settings(new EditorSettings())
+    {
+        m_windows.push_back(new MenuWindow(_window));
+        m_windows.push_back(new ConsoleWindow());
+    }
 
-	void Editor::Init(GLFWwindow* _window) const
-	{
-		m_settings->Deserialize(_window);
+    void Editor::Init(GLFWwindow* _window) const
+    {
+        m_settings->Deserialize(_window);
 
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -37,11 +35,11 @@ namespace CycloneEditor
 		io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;           // Enable Docking
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 
-		ImGui::StyleColorsDark();
+        ImGui::StyleColorsDark();
 
-		ImGui_ImplGlfw_InitForOpenGL(_window, true);
-		ImGui_ImplOpenGL3_Init("#version 130");
-	}
+        ImGui_ImplGlfw_InitForOpenGL(_window, true);
+        ImGui_ImplOpenGL3_Init("#version 130");
+    }
 
 	void Editor::Run(GLFWwindow* _window) const
 	{
@@ -52,8 +50,8 @@ namespace CycloneEditor
 		for (const EditorWindow* window : m_windows)
 			window->Render();
 
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+        ImGui::Render();
+        ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
 		if (io.ConfigFlags & ImGuiConfigFlags_ViewportsEnable)
@@ -65,12 +63,12 @@ namespace CycloneEditor
 		}
 	}
 
-	void Editor::Cleanup(GLFWwindow* _window) const
-	{
-		m_settings->Serialize(_window);
+    void Editor::Cleanup(GLFWwindow* _window) const
+    {
+        m_settings->Serialize(_window);
 
-		ImGui_ImplOpenGL3_Shutdown();
-		ImGui_ImplGlfw_Shutdown();
-		ImGui::DestroyContext();
-	}
+        ImGui_ImplOpenGL3_Shutdown();
+        ImGui_ImplGlfw_Shutdown();
+        ImGui::DestroyContext();
+    }
 }

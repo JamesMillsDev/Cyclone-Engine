@@ -1,6 +1,6 @@
 #ifndef CYCLONE_WINDOW
 #define CYCLONE_WINDOW
-#include "editor.h"
+#include "Editor.h"
 
 namespace CycloneEditor
 {
@@ -8,14 +8,16 @@ namespace CycloneEditor
 	{
 	public:
 		Window(const char* _name);
-		bool init();
-		void run() const;
-		void cleanup() const;
+		bool Init();
+		void Run() const;
+		void Cleanup() const;
+
+		GLFWwindow* GetWindowInstance() const { return m_windowInstance; }
 
 	private:
-		GLFWwindow* windowInstance;
-		const char* name;
-		CycloneEditor::Editor* editorInstance;
+		GLFWwindow* m_windowInstance;
+		const char* m_name;
+		Editor* m_editorInstance;
 
 	};
 }

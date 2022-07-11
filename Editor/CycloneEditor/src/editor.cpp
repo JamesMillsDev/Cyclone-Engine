@@ -4,8 +4,8 @@
 #include "imgui/imgui_impl_glfw.h"
 #include "imgui/imgui_impl_opengl3.h"
 
-#include "input.h"
-#include "debug.h"
+#include "Input.h"
+#include "Debug.h"
 
 #include "windows/ConsoleWindow.h"
 #include "windows/SceneWindow.h"
@@ -30,8 +30,6 @@ namespace CycloneEditor
 	{
 		m_settings->Deserialize(_window);
 
-		Input::Init(_window);
-
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
 		ImGuiIO& io = ImGui::GetIO(); (void)io;
@@ -45,16 +43,14 @@ namespace CycloneEditor
 		ImGui_ImplOpenGL3_Init("#version 130");
 	}
 
-	void Editor::Run() const
+	void Editor::Run(GLFWwindow* _window) const
 	{
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
 
-		for (EditorWindow* window : m_windows)
-		{
+		for (const EditorWindow* window : m_windows)
 			window->Render();
-		}
 
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -67,8 +63,6 @@ namespace CycloneEditor
 			ImGui::RenderPlatformWindowsDefault();
 			glfwMakeContextCurrent(backupCurrentContext);
 		}
-
-		Input::Update();
 	}
 
 	void Editor::Cleanup(GLFWwindow* _window) const

@@ -222,7 +222,7 @@ CODE
          g_pSwapChain->Present(1, 0);
      }
 
-     // Shutdown
+     // DestroyInstance
      ImGui_ImplDX11_Shutdown();
      ImGui_ImplWin32_Shutdown();
      ImGui::DestroyContext();
@@ -278,7 +278,7 @@ CODE
         SwapBuffers();
      }
 
-     // Shutdown
+     // DestroyInstance
      ImGui::DestroyContext();
 
  To decide whether to dispatch mouse/keyboard inputs to Dear ImGui to the rest of your application,
@@ -576,7 +576,7 @@ CODE
  - 2018/02/16 (1.60) - obsoleted the io.RenderDrawListsFn callback, you can call your graphics engine render function after ImGui::Render(). Use ImGui::GetDrawData() to retrieve the ImDrawData* to display.
  - 2018/02/07 (1.60) - reorganized context handling to be more explicit,
                        - YOU NOW NEED TO CALL ImGui::CreateContext() AT THE BEGINNING OF YOUR APP, AND CALL ImGui::DestroyContext() AT THE END.
-                       - removed Shutdown() function, as DestroyContext() serve this purpose.
+                       - removed DestroyInstance() function, as DestroyContext() serve this purpose.
                        - you may pass a ImFontAtlas* pointer to CreateContext() to share a font atlas between contexts. Otherwise CreateContext() will create its own font atlas instance.
                        - removed allocator parameters from CreateContext(), they are now setup with SetAllocatorFunctions(), and shared by all contexts.
                        - removed the default global context and font atlas instance, which were confusing for users of DLL reloading and users of multiple contexts.
@@ -4668,7 +4668,7 @@ void ImGui::Shutdown()
     // Destroy platform windows
     DestroyPlatformWindows();
 
-    // Shutdown extensions
+    // DestroyInstance extensions
     DockContextShutdown(&g);
 
     CallContextHooks(&g, ImGuiContextHookType_Shutdown);
@@ -10379,7 +10379,7 @@ static void ImGui::NavProcessItem()
     const ImRect nav_bb = g.LastItemData.NavRect;
     const ImGuiItemFlags item_flags = g.LastItemData.InFlags;
 
-    // Process Init Request
+    // Process CreateInstance Request
     if (g.NavInitRequest && g.NavLayer == window->DC.NavLayerCurrent && (item_flags & ImGuiItemFlags_Disabled) == 0)
     {
         // Even if 'ImGuiItemFlags_NoNavDefaultFocus' is on (typically collapse/close button) we record the first ResultId so they can be used as a fallback
@@ -10477,7 +10477,7 @@ void ImGui::NavProcessItemForTabbingRequest(ImGuiID id)
     }
     else if (g.NavTabbingDir == 0)
     {
-        // Tab Init
+        // Tab CreateInstance
         if (g.NavTabbingResultFirst.ID == 0)
             NavMoveRequestResolveWithLastItem(&g.NavTabbingResultFirst);
     }
@@ -10726,7 +10726,7 @@ static void ImGui::NavUpdate()
     ImGuiIO& io = g.IO;
 
     io.WantSetMousePos = false;
-    //if (g.NavScoringDebugCount > 0) IMGUI_DEBUG_LOG("NavScoringDebugCount %d for '%s' layer %d (Init:%d, Move:%d)\n", g.NavScoringDebugCount, g.NavWindow ? g.NavWindow->Name : "NULL", g.NavLayer, g.NavInitRequest || g.NavInitResultId != 0, g.NavMoveRequest);
+    //if (g.NavScoringDebugCount > 0) IMGUI_DEBUG_LOG("NavScoringDebugCount %d for '%s' layer %d (CreateInstance:%d, Move:%d)\n", g.NavScoringDebugCount, g.NavWindow ? g.NavWindow->Name : "NULL", g.NavLayer, g.NavInitRequest || g.NavInitResultId != 0, g.NavMoveRequest);
 
     // Update Gamepad->Nav inputs mapping
     // Set input source as Gamepad when buttons are pressed (as some features differs when used with Gamepad vs Keyboard)
@@ -17335,7 +17335,7 @@ static void ImGui::DockSettingsHandler_WriteAll(ImGuiContext* ctx, ImGuiSettings
 #endif
 
 // Win32 clipboard implementation
-// We use g.ClipboardHandlerData for temporary storage to ensure it is freed on Shutdown()
+// We use g.ClipboardHandlerData for temporary storage to ensure it is freed on DestroyInstance()
 static const char* GetClipboardTextFn_DefaultImpl(void*)
 {
     ImGuiContext& g = *GImGui;

@@ -26,7 +26,9 @@ namespace CycloneEngine
 			return asArray[_i];
 		}
 
+
 		CYCLONE_DLL float3();
+		CYCLONE_DLL float3(float _val);
 		CYCLONE_DLL float3(float _x, float _y, float _z);
 
 		CYCLONE_DLL float Magnitude() const;
@@ -42,13 +44,16 @@ namespace CycloneEngine
 		CYCLONE_DLL static float3 Project(const float3& _length, const float3& _direction);
 		CYCLONE_DLL static float3 Perpendicular(const float3& _length, const float3& _direction);
 		CYCLONE_DLL static float3 Reflect(const float3& _vector, const float3& _normal);
+		
 
 	} float3;
 
 	CYCLONE_DLL float3 operator+(const float3& _lhs, const float3& _rhs);
 	CYCLONE_DLL float3 operator-(const float3& _lhs, const float3& _rhs);
+	CYCLONE_DLL float3 operator-(const float3& _lhs);
 	CYCLONE_DLL float3 operator*(const float3& _lhs, const float3& _rhs);
-	CYCLONE_DLL float3 operator*(const float3& _lhs, const float _rhs);
+	CYCLONE_DLL float3 operator*(const float3& _lhs, float _rhs);
+	CYCLONE_DLL float3 operator/(const float3& _lhs, float _rhs);
 	CYCLONE_DLL bool operator==(const float3& _lhs, const float3& _rhs);
 	CYCLONE_DLL bool operator!=(const float3& _lhs, const float3& _rhs);
 }

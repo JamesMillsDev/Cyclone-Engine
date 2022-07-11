@@ -150,6 +150,7 @@
     <ClCompile Include="src\float4x4.cpp" />
     <ClCompile Include="src\float2.cpp" />
     <ClCompile Include="src\float3.cpp" />
+    <ClCompile Include="src\quaternion.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\MatrixMath.h" />
@@ -160,6 +161,7 @@
     <ClInclude Include="src\float4x4.h" />
     <ClInclude Include="src\float2.h" />
     <ClInclude Include="src\float3.h" />
+    <ClInclude Include="src\quaternion.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

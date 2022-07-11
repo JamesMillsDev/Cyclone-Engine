@@ -14,9 +14,8 @@ namespace CycloneEditor
 		for (CycloneEngine::LogMessage* message : CycloneEngine::Debug::GetMessages())
 			message->Render();
 
-		ImGui::End();
+		ImGui::SetScrollHereY(1.0f);
 
-		if (CycloneEngine::Input::KeyDown(CycloneEngine::Keycode::A))
-			CycloneEngine::Debug::LogError("test");
+		ImGui::End();
 	}
 }

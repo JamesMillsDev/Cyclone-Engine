@@ -20,7 +20,7 @@ namespace CycloneEditor
 		explicit Editor(GLFWwindow* _window);
 
 		void Init(GLFWwindow* _window) const;
-		void Run() const;
+		void Run(GLFWwindow* _window) const;
 		void Cleanup(GLFWwindow* _window) const;
 
 	private:

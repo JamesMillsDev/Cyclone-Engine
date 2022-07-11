@@ -6,12 +6,12 @@ int main()
 {
     ::ShowWindow(::GetConsoleWindow(), SW_HIDE);
 
-    CycloneEditor::Window* appWindow = new CycloneEditor::Window("Cyclone Engine");
-    if (!appWindow->init())
+    const auto appWindow = new CycloneEditor::Window("Cyclone Engine");
+    if (!appWindow->Init())
         return -1;
 
-    appWindow->run();
-    appWindow->cleanup();
+    appWindow->Run();
+    appWindow->Cleanup();
 
     delete appWindow;
 

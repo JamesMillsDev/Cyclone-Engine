@@ -7,17 +7,20 @@
 #include <Windows.h>
 
 #include "Debug.h"
+#include "Input.h"
 #include "../resource.h"
+
+using CycloneEngine::Input;
 
 namespace CycloneEditor
 {
 	Window::Window(const char* _name)
-		: windowInstance(nullptr), name(_name), editorInstance(nullptr)
+		: m_windowInstance(nullptr), m_name(_name), m_editorInstance(nullptr)
 	{
 
 	}
 
-	bool Window::init()
+	bool Window::Init()
 	{
 		/* Initialize the library */
 		if (!glfwInit())
@@ -26,15 +29,15 @@ namespace CycloneEditor
 		}
 
 		/* Create a windowed mode window and its OpenGL context */
-		windowInstance = glfwCreateWindow(640, 480, name, nullptr, nullptr);
-		if (!windowInstance)
+		m_windowInstance = glfwCreateWindow(640, 480, m_name, nullptr, nullptr);
+		if (!m_windowInstance)
 		{
 			glfwTerminate();
 			return false;
 		}
 
 		/* Make the window's context current */
-		glfwMakeContextCurrent(windowInstance);
+		glfwMakeContextCurrent(m_windowInstance);
 
 		/* Start GLEW extension handler */
 		if (glewInit())
@@ -52,35 +55,40 @@ namespace CycloneEditor
 		SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 		SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 
-		editorInstance = new CycloneEditor::Editor(windowInstance);
-		editorInstance->Init(windowInstance);
+		Input::CreateInstance(m_windowInstance);
+
+		m_editorInstance = new CycloneEditor::Editor(m_windowInstance);
+		m_editorInstance->Init(m_windowInstance);
 
 		return true;
 	}
 
-	void Window::run() const
+	void Window::Run() const
 	{
 		/* Loop until the user closes the window */
-		while (!glfwWindowShouldClose(windowInstance))
+		while (!glfwWindowShouldClose(m_windowInstance))
 		{
 			/* Render here */
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-			editorInstance->Run();
-
-			/* Swap front and back buffers */
-			glfwSwapBuffers(windowInstance);
+			Input::GetInstance()->ClearStatus(m_windowInstance);
 
 			/* Poll for and process events */
 			glfwPollEvents();
+
+			m_editorInstance->Run(m_windowInstance);
+
+			/* Swap front and back buffers */
+			glfwSwapBuffers(m_windowInstance);
 		}
 	}
 
-	void Window::cleanup() const
+	void Window::Cleanup() const
 	{
-		editorInstance->Cleanup(windowInstance);
+		Input::DestroyInstance();
+		m_editorInstance->Cleanup(m_windowInstance);
 
-		glfwDestroyWindow(windowInstance);
+		glfwDestroyWindow(m_windowInstance);
 		glfwTerminate();
 	}
 }

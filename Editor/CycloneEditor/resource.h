@@ -3,8 +3,8 @@
 // Used by CycloneEditor.rc
 //
 #define MAINICON                        102
-#define IDB_PNG1                        105
-#define IDI_ICON1                       101
+/*#define IDB_PNG1                        105
+#define IDI_ICON1                       101*/
 
 // Next default values for new objects
 // 

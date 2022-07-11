@@ -11,6 +11,13 @@ namespace CycloneEngine
 		z = 0.0f;
 	}
 
+	float3::float3(const float _val)
+	{
+		x = _val;
+		y = _val;
+		z = _val;
+	}
+
 	float3::float3(const float _x, const float _y, const float _z)
 	{
 		x = _x;
@@ -98,17 +105,27 @@ namespace CycloneEngine
 
 	float3 operator-(const float3& _lhs, const float3& _rhs)
 	{
-		return float3{ _lhs.x - _rhs.x, _lhs.y - _rhs.y, _lhs.z + _rhs.z };
+		return float3{ _lhs.x - _rhs.x, _lhs.y - _rhs.y, _lhs.z - _rhs.z };
+	}
+
+	float3 operator-(const float3& _lhs)
+	{
+		return float3{-_lhs.x, -_lhs.y, -_lhs.z};
 	}
 
 	float3 operator*(const float3& _lhs, const float3& _rhs)
 	{
-		return float3{ _lhs.x * _rhs.x, _lhs.y * _rhs.y, _lhs.z + _rhs.z };
+		return float3{ _lhs.x * _rhs.x, _lhs.y * _rhs.y, _lhs.z * _rhs.z };
 	}
 
 	float3 operator*(const float3& _lhs, const float _rhs)
 	{
-		return float3{ _lhs.x * _rhs, _lhs.y * _rhs, _lhs.z + _rhs };
+		return float3{ _lhs.x * _rhs, _lhs.y * _rhs, _lhs.z * _rhs };
+	}
+
+	float3 operator/(const float3& _lhs, float _rhs)
+	{
+		return float3{ _lhs.x / _rhs, _lhs.y / _rhs, _lhs.z / _rhs };
 	}
 
 	bool operator==(const float3& _lhs, const float3& _rhs)

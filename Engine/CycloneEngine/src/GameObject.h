@@ -13,9 +13,9 @@ namespace CycloneEngine
 	class GameObject
 	{
 	public:
+		Transform* transform = nullptr;
 
 	protected:
-		Transform* m_transform = nullptr;
 		
 	private:
 		Components m_components;

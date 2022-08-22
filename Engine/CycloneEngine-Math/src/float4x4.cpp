@@ -5,6 +5,37 @@
 
 namespace CycloneEngine
 {
+    float4x4::float4x4(const glm::mat4& _matrix)
+    {
+        m11 = _matrix[0][0];
+        m12 = _matrix[0][1];
+        m13 = _matrix[0][2];
+        m14 = _matrix[0][3];
+        m21 = _matrix[1][0];
+        m22 = _matrix[1][1];
+        m23 = _matrix[1][2];
+        m24 = _matrix[1][3];
+        m31 = _matrix[2][0];
+        m32 = _matrix[2][1];
+        m33 = _matrix[2][2];
+        m34 = _matrix[2][3];
+        m41 = _matrix[3][0];
+        m42 = _matrix[3][1];
+        m43 = _matrix[3][2];
+        m44 = _matrix[3][3];
+    }
+
+    float4x4::operator glm::mat<4, 4, float, glm::defaultp> const() const
+    {
+        return glm::mat4
+        {
+            m11, m12, m13, m14,
+            m21, m22, m23, m24,
+            m31, m32, m33, m34,
+            m41, m42, m43, m44
+        };
+    }
+
     float4x4 float4x4::Transpose(const float4x4& _matrix)
     {
         float4x4 result;

@@ -9,6 +9,7 @@
 #include "Debug.h"
 #include "Input.h"
 #include "../resource.h"
+#include "Input.h"
 
 using CycloneEngine::Input;
 

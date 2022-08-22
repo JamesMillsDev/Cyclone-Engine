@@ -25,6 +25,18 @@ namespace CycloneEngine
 		z = _z;
 	}
 
+	float3::float3(const glm::vec3& _vector)
+	{
+		x = _vector.x;
+		y = _vector.y;
+		z = _vector.z;
+	}
+
+	float3::operator glm::vec<3, float, glm::defaultp> const() const
+	{
+		return glm::vec3(x, y, z);
+	}
+
 	float float3::Magnitude() const
 	{
 		return sqrt(Dot(*this, *this));

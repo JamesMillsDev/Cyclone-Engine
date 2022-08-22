@@ -16,19 +16,30 @@ namespace CycloneEngine
 		y = _y;
 	}
 
-	float float2::Magnitude()
+	float2::float2(const glm::vec2& _vector)
+	{
+		x = _vector.x;
+		y = _vector.y;
+	}
+
+	float2::operator glm::vec<2, float, glm::defaultp> const() const
+	{
+		return glm::vec2(x, y);
+	}
+
+	float float2::Magnitude() const
 	{
 		return sqrt(Dot(*this, *this));
 	}
 
-	float float2::MagnitudeSq()
+	float float2::MagnitudeSq() const
 	{
 		return Dot(*this, *this);
 	}
 
 	void float2::Normalize()
 	{
-		float2 normalized = Normalized(*this);
+		const float2 normalized = Normalized(*this);
 		x = normalized.x;
 		y = normalized.y;
 	}
@@ -45,13 +56,13 @@ namespace CycloneEngine
 
 	float2 float2::Normalized(const float2& _lhs)
 	{
-		float2 other = _lhs;
+		const float2 other = _lhs;
 		return other * (1.0f / other.Magnitude());
 	}
 
 	float2 float2::Project(const float2& _length, const float2& _direction)
 	{
-		float2 magVec = _direction;
+		const float2 magVec = _direction;
 
 		const float dot = Dot(_length, _direction);
 		const float magSq = magVec.MagnitudeSq();

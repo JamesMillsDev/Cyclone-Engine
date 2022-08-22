@@ -1,6 +1,8 @@
 #ifndef CYCLONE_MATH_FLOAT2
 #define CYCLONE_MATH_FLOAT2
 
+#include <glm/vec2.hpp>
+
 #include "CycloneMath.h"
 
 namespace CycloneEngine
@@ -27,9 +29,11 @@ namespace CycloneEngine
 
 		CYCLONE_DLL float2();
 		CYCLONE_DLL float2(float _x, float _y);
+		CYCLONE_DLL float2(const glm::vec2& _vector);
+		CYCLONE_DLL operator glm::vec2 const() const;
 
-		CYCLONE_DLL float Magnitude();
-		CYCLONE_DLL float MagnitudeSq();
+		CYCLONE_DLL float Magnitude() const;
+		CYCLONE_DLL float MagnitudeSq() const;
 
 		CYCLONE_DLL void Normalize();
 

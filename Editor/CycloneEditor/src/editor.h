@@ -9,6 +9,7 @@ using std::vector;
 
 namespace CycloneEditor
 {
+	class SceneCamera;
 	class EditorWindow;
 	class EditorSettings;
 
@@ -26,6 +27,7 @@ namespace CycloneEditor
 	private:
 		WindowCollection m_windows;
 		EditorSettings* m_settings;
+		SceneCamera* m_camera;
 
 	};
 }

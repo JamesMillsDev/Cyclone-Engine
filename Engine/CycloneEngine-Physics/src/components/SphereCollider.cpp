@@ -20,21 +20,23 @@ namespace CycloneEngine
 
 	bool SphereCollider::Overlaps(float3& _point)
 	{
-		float sqMag = (_point - WorldCenter()).MagnitudeSq();
-		float radSq = radius * radius;
+		const float sqMag = (_point - WorldCenter()).MagnitudeSq();
+		const float radSq = radius * radius;
 
 		return sqMag < radSq;
 	}
 
 	bool SphereCollider::CollidesWith(ICollider* _other)
 	{
-		if (SphereCollider* otherSphere = dynamic_cast<SphereCollider*>(_other))
+		if (const SphereCollider* otherSphere = dynamic_cast<SphereCollider*>(_other))
 		{
-			float radiusSum = radius + otherSphere->radius;
+			const float radiusSum = radius + otherSphere->radius;
 
-			float sqDist = (WorldCenter() - otherSphere->WorldCenter()).MagnitudeSq();
+			const float sqDist = (WorldCenter() - otherSphere->WorldCenter()).MagnitudeSq();
 
 			return sqDist < radiusSum * radiusSum;
 		}
+
+		return false;
 	}
 }

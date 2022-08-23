@@ -766,14 +766,11 @@ namespace CycloneEditor
     void Gizmos::Draw(const SceneCamera& _camera)
     {
         if(m_singleton != nullptr && (m_singleton->m_lineCount > 0 || m_singleton->m_triCount > 0 || m_singleton->m_transparentTriCount > 0))
-        {
-            const glm::mat4 view = _camera.m_viewMatrix;
-            const glm::mat4 projection = _camera.m_projectionMatrix;
-            
+        {            
             glUseProgram(m_singleton->m_shader);
 
             const unsigned int projectionViewUniform = glGetUniformLocation(m_singleton->m_shader, "ProjectionView");
-            glUniformMatrix4fv(projectionViewUniform, 1, false, glm::value_ptr(projection * view));
+            glUniformMatrix4fv(projectionViewUniform, 1, false, value_ptr((glm::mat4)_camera.GetProjectionView()));
 
             if(m_singleton->m_lineCount > 0)
             {

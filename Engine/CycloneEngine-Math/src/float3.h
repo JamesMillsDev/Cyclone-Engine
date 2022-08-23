@@ -47,12 +47,13 @@ namespace CycloneEngine
 		static float3 Perpendicular(const float3& _length, const float3& _direction);
 		static float3 Reflect(const float3& _vector, const float3& _normal);
 		
-
 	} float3;
 
 	float3 operator+(const float3& _lhs, const float3& _rhs);
 	float3 operator-(const float3& _lhs, const float3& _rhs);
 	float3 operator-(const float3& _lhs);
+	float3 operator+=(float3& _lhs, const float3& _rhs);
+	float3 operator-=(float3& _lhs, const float3& _rhs);
 	float3 operator*(const float3& _lhs, const float3& _rhs);
 	float3 operator*(const float3& _lhs, float _rhs);
 	float3 operator/(const float3& _lhs, float _rhs);

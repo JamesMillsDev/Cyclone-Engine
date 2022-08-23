@@ -19,7 +19,7 @@ namespace CycloneEngine
 		Exception = 3
 	};
 
-	class std::tm;
+	struct std::tm;
 	class LogMessage;
 	
 	typedef vector<LogMessage*> LogMessages;

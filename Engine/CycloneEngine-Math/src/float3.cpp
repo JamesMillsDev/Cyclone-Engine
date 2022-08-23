@@ -125,6 +125,24 @@ namespace CycloneEngine
 		return float3{-_lhs.x, -_lhs.y, -_lhs.z};
 	}
 
+	float3 operator+=(float3& _lhs, const float3& _rhs)
+	{
+		const float3 output = _lhs + _rhs;
+		_lhs.x = output.x;
+		_lhs.y = output.y;
+		_lhs.z = output.z;
+		return output;
+	}
+
+	float3 operator-=(float3& _lhs, const float3& _rhs)
+	{
+		const float3 output = _lhs - _rhs;
+		_lhs.x = output.x;
+		_lhs.y = output.y;
+		_lhs.z = output.z;
+		return output;
+	}
+
 	float3 operator*(const float3& _lhs, const float3& _rhs)
 	{
 		return float3{ _lhs.x * _rhs.x, _lhs.y * _rhs.y, _lhs.z * _rhs.z };

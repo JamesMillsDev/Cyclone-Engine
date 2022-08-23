@@ -25,11 +25,12 @@ namespace CycloneEditor
     {
         m_windows.push_back(new MenuWindow(_window));
         m_windows.push_back(new ConsoleWindow());
-
+        
         int w = 0;
         int h = 0;
         glfwGetWindowSize(_window, &w, &h);
-        m_camera = new SceneCamera(w, h);
+        m_camera = new SceneCamera();
+        m_camera->UpdateScreenSize(w, h);
     }
 
     void Editor::Init(GLFWwindow* _window) const
@@ -53,6 +54,11 @@ namespace CycloneEditor
 
     void Editor::Run(GLFWwindow* _window) const
     {
+        int w = 0;
+        int h = 0;
+        glfwGetWindowSize(_window, &w, &h);
+        m_camera->UpdateScreenSize(w, h);
+        
         ImGui_ImplOpenGL3_NewFrame();
         ImGui_ImplGlfw_NewFrame();
         ImGui::NewFrame();

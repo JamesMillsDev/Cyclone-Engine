@@ -9,7 +9,7 @@ using std::sqrt;
 
 namespace CycloneEngine
 {
-    constexpr float EPSILON = 1e-10;
+    constexpr float EPSILON = 1e-10f;
     
     quaternion::quaternion()
         : x(0), y(0), z(0), w(1)
@@ -31,7 +31,7 @@ namespace CycloneEngine
     {
     }
 
-    quaternion& quaternion::operator=(const quaternion& _value)
+    auto quaternion::operator=(const quaternion& _value) -> quaternion&
     {
         x = _value.x;
         y = _value.y;
@@ -57,7 +57,7 @@ namespace CycloneEngine
 
     quaternion quaternion::Conjugate() const
     {
-        return quaternion(-Complex(), w);
+        return { -Complex(), w };
     }
 
     quaternion quaternion::Inverse() const
@@ -67,20 +67,20 @@ namespace CycloneEngine
 
     quaternion quaternion::Product(const quaternion& _rhs) const
     {
-        return quaternion(y * _rhs.z - z * _rhs.y + x * _rhs.w + w * _rhs.x,
+        return { y * _rhs.z - z * _rhs.y + x * _rhs.w + w * _rhs.x,
                           z * _rhs.x - x * _rhs.z + y * _rhs.w + w * _rhs.y,
                           x * _rhs.y - y * _rhs.x + z * _rhs.w + w * _rhs.z,
-                          w * _rhs.w - x * _rhs.x - y * _rhs.y - z * _rhs.z);
+                          w * _rhs.w - x * _rhs.x - y * _rhs.y - z * _rhs.z };
     }
 
     float4x4 quaternion::Matrix() const
     {
-        return float4x4(w, -z, y, x, z, w, -x, y, -z, x, w, z, -x, -y, -z, w);
+        return { w, -z, y, x, z, w, -x, y, -z, x, w, z, -x, -y, -z, w };
     }
 
     float4x4 quaternion::RightMatrix() const
     {
-        return float4x4(w, -z, y, -x, z, w, -x, -y, -y, x, w, -z, x, y, z, w);
+        return { w, -z, y, -x, z, w, -x, -y, -y, x, w, -z, x, y, z, w };
     }
 
     float quaternion::Magnitude() const
@@ -90,10 +90,11 @@ namespace CycloneEngine
 
     float3x3 quaternion::RotationMatrix() const
     {
-        return float3x3(
+        return {
             1 - 2 * y * y - 2 * z * z, 2 * x * y - 2 * z * w, 2 * x * z + 2 * y * w,
             2 * x * y + 2 * z * w, 1 - 2 * x * x - 2 * z * z, 2 * y * z - 2 * x * w,
-            2 * x * z - 2 * y * w, 2 * y * z + 2 * x * w, 1 - 2 * x * x - 2 * y * y);
+            2 * x * z - 2 * y * w, 2 * y * z + 2 * x * w, 1 - 2 * x * x - 2 * y * y
+        };
     }
 
     float3 quaternion::RotateVector(const float3& _vector) const
@@ -155,27 +156,27 @@ namespace CycloneEngine
 
     quaternion quaternion::operator*(const float _scalar) const
     {
-        return quaternion(Complex() * _scalar, w * _scalar);
+        return { Complex() * _scalar, w * _scalar };
     }
 
     quaternion quaternion::operator+(const quaternion& _rhs) const
     {
-        return quaternion(x + _rhs.x, y + _rhs.y, z + _rhs.z, w + _rhs.w);
+        return { x + _rhs.x, y + _rhs.y, z + _rhs.z, w + _rhs.w };
     }
 
     quaternion quaternion::operator-(const quaternion& _rhs) const
     {
-        return quaternion(x - _rhs.x, y - _rhs.y, z - _rhs.z, w - _rhs.w);
+        return { x - _rhs.x, y - _rhs.y, z - _rhs.z, w - _rhs.w };
     }
 
     quaternion quaternion::operator-() const
     {
-        return quaternion(-x, -y, -z, -w);
+        return { -x, -y, -z, -w };
     }
 
     quaternion quaternion::operator/(const float _scalar) const
     {
-        return quaternion(Complex() / _scalar, w / _scalar);
+        return { Complex() / _scalar, w / _scalar };
     }
 
     quaternion quaternion::Slerp(const quaternion& _a, const quaternion& _b, const float _t)
@@ -183,16 +184,16 @@ namespace CycloneEngine
         float omega = acos(Mathf::Clamp(_a.x * _b.x + _a.y * _b.y + _a.z * _b.z + _a.w * _b.w, -1, 1));
         
         if (fabsf(omega) < EPSILON)
-            omega = 1e-10;
+            omega = 1e-10f;
 
         const float som = sinf(omega);
         const float st0 = sinf((1 - _t) * omega) / som;
         const float st1 = sinf(_t * omega) / som;
 
-        return quaternion(_a.x * st0 + _b.x * st1,
+        return { _a.x * st0 + _b.x * st1,
                           _a.y * st0 + _b.y * st1,
                           _a.z * st0 + _b.z * st1,
-                          _a.w * st0 + _b.w * st1);
+                          _a.w * st0 + _b.w * st1 };
     }
 
     quaternion quaternion::Euler(const float3& _vector)

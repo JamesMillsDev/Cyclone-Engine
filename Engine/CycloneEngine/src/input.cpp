@@ -1,5 +1,6 @@
 #include "Input.h"
 
+#define GLFW_DLL
 #include <GLFW/glfw3.h>
 
 namespace CycloneEngine
@@ -8,24 +9,24 @@ namespace CycloneEngine
 
     bool Input::IsKeyDown(Keycode _inputKeyId)
     {
-        return m_instance->m_currentKeys[(int)_inputKeyId] == GLFW_PRESS;
+        return m_instance->m_currentKeys[(int) _inputKeyId] == GLFW_PRESS;
     }
 
     bool Input::IsKeyUp(Keycode _inputKeyId)
     {
-        return m_instance->m_currentKeys[(int)_inputKeyId] == GLFW_RELEASE;
+        return m_instance->m_currentKeys[(int) _inputKeyId] == GLFW_RELEASE;
     }
 
     bool Input::WasKeyPressed(Keycode _inputKeyId)
     {
-        return m_instance->m_currentKeys[(int)_inputKeyId] == GLFW_PRESS &&
-            m_instance->m_lastKeys[(int)_inputKeyId] == GLFW_RELEASE;
+        return m_instance->m_currentKeys[(int) _inputKeyId] == GLFW_PRESS &&
+            m_instance->m_lastKeys[(int) _inputKeyId] == GLFW_RELEASE;
     }
 
     bool Input::WasKeyReleased(Keycode _inputKeyId)
     {
-        return m_instance->m_currentKeys[(int)_inputKeyId] == GLFW_RELEASE &&
-            m_instance->m_lastKeys[(int)_inputKeyId] == GLFW_PRESS;
+        return m_instance->m_currentKeys[(int) _inputKeyId] == GLFW_RELEASE &&
+            m_instance->m_lastKeys[(int) _inputKeyId] == GLFW_PRESS;
     }
 
     bool Input::IsMouseButtonDown(const int _inputMouseId)
@@ -62,10 +63,10 @@ namespace CycloneEngine
 
     void Input::GetMousePos(int* _x, int* _y)
     {
-        if (_x != nullptr)
+        if(_x != nullptr)
             *_x = m_instance->m_mouseX;
 
-        if (_y != nullptr)
+        if(_y != nullptr)
             *_y = m_instance->m_mouseY;
     }
 
@@ -81,10 +82,10 @@ namespace CycloneEngine
 
     void Input::GetMouseDelta(int* _x, int* _y)
     {
-        if (_x != nullptr)
+        if(_x != nullptr)
             *_x = m_instance->m_mouseX - m_instance->m_oldMouseX;
-        
-        if (_y != nullptr)
+
+        if(_y != nullptr)
             *_y = m_instance->m_mouseY - m_instance->m_oldMouseY;
     }
 
@@ -95,7 +96,7 @@ namespace CycloneEngine
 
     void Input::CreateInstance(void* _window)
     {
-        if (m_instance != nullptr)
+        if(m_instance != nullptr)
             return;
 
         m_instance = new Input(_window);
@@ -103,7 +104,7 @@ namespace CycloneEngine
 
     void Input::DestroyInstance()
     {
-        if (m_instance != nullptr)
+        if(m_instance != nullptr)
         {
             delete m_instance;
             m_instance = nullptr;
@@ -112,23 +113,23 @@ namespace CycloneEngine
 
     void Input::ClearStatus(void* _window)
     {
-        auto window = (GLFWwindow*)_window;
+        auto window = (GLFWwindow*) _window;
 
         m_pressedCharacters.clear();
 
         m_pressedKeys.clear();
 
         // update keys
-        for (int i = GLFW_KEY_SPACE; i <= GLFW_KEY_LAST; ++i)
+        for(int i = GLFW_KEY_SPACE; i <= GLFW_KEY_LAST; ++i)
         {
             m_lastKeys[i] = m_currentKeys[i];
 
-            if ((m_currentKeys[i] = glfwGetKey(window, i)) == GLFW_PRESS)
+            if((m_currentKeys[i] = glfwGetKey(window, i)) == GLFW_PRESS)
                 m_pressedKeys.push_back(m_currentKeys[i]);
         }
 
         // update mouse
-        for (int i = 0; i < 8; ++i)
+        for(int i = 0; i < 8; ++i)
         {
             m_instance->m_lastButtons[i] = m_instance->m_currentButtons[i];
             m_instance->m_currentButtons[i] = glfwGetMouseButton(window, i);
@@ -141,23 +142,23 @@ namespace CycloneEngine
 
     Input::Input(void* _window)
     {
-        auto window = (GLFWwindow*)_window;
+        auto window = (GLFWwindow*) _window;
 
         // track current/previous key and mouse button states
         m_lastKeys = new int[GLFW_KEY_LAST + 1];
         m_currentKeys = new int[GLFW_KEY_LAST + 1];
 
-        for (int i = GLFW_KEY_SPACE; i <= GLFW_KEY_LAST; ++i)
+        for(int i = GLFW_KEY_SPACE; i <= GLFW_KEY_LAST; ++i)
             m_lastKeys[i] = m_currentKeys[i] = glfwGetKey(window, i);
 
-        for (int i = 0; i < 8; ++i)
+        for(int i = 0; i < 8; ++i)
             m_lastButtons[i] = m_currentButtons[i] = glfwGetMouseButton(window, i);
 
         // set up callbacks
         auto keyPressCallback = [](GLFWwindow* _window, const int _key, const int _scancode, const int _action,
                                    const int _mods)
         {
-            for (auto& f : m_instance->m_keyCallbacks)
+            for(auto& f : m_instance->m_keyCallbacks)
                 f(_window, _key, _scancode, _action, _mods);
         };
 
@@ -165,7 +166,7 @@ namespace CycloneEngine
         {
             m_instance->m_pressedCharacters.push_back(_character);
 
-            for (auto& f : m_instance->m_charCallbacks)
+            for(auto& f : m_instance->m_charCallbacks)
                 f(_window, _character);
         };
 
@@ -174,15 +175,15 @@ namespace CycloneEngine
             int w = 0, h = 0;
             glfwGetWindowSize(_window, &w, &h);
 
-            m_instance->OnMouseMove((int)_x, h - (int)_y);
+            m_instance->OnMouseMove((int) _x, h - (int) _y);
 
-            for (auto& f : m_instance->m_mouseMoveCallbacks)
+            for(auto& f : m_instance->m_mouseMoveCallbacks)
                 f(_window, _x, h - _y);
         };
 
         auto mouseInputCallback = [](GLFWwindow* _window, const int _button, const int _action, const int _mods)
         {
-            for (auto& f : m_instance->m_mouseButtonCallbacks)
+            for(auto& f : m_instance->m_mouseButtonCallbacks)
                 f(_window, _button, _action, _mods);
         };
 
@@ -190,7 +191,7 @@ namespace CycloneEngine
         {
             m_instance->m_mouseScroll += _yOffset;
 
-            for (auto& f : m_instance->m_mouseScrollCallbacks)
+            for(auto& f : m_instance->m_mouseScrollCallbacks)
                 f(_window, _xOffset, _yOffset);
         };
 
@@ -225,7 +226,7 @@ namespace CycloneEngine
     {
         m_mouseX = _newXPos;
         m_mouseY = _newYPos;
-        if (m_firstMouseMove)
+        if(m_firstMouseMove)
         {
             // On first move after startup/entering window reset old mouse position
             m_oldMouseX = _newXPos;

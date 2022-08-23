@@ -6,7 +6,7 @@
 
 class GLFWwindow;
 
-using namespace CycloneEngine;
+using CycloneEngine::float2;
 
 using std::string;
 

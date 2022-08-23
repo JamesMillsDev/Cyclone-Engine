@@ -13,8 +13,8 @@ namespace CycloneEngine
 	class Transform : public Component
 	{
 	public:
-		CYCLONE_DLL void SetParent(Transform* _parent);
-		CYCLONE_DLL Transform* Parent() const;
+		void SetParent(Transform* _parent);
+		Transform* Parent() const;
 
 		float3 position;
 		quaternion rotation;

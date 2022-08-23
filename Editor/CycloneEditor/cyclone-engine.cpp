@@ -1,6 +1,6 @@
-#include "Window.h"
-
 #include <Windows.h>
+
+#include "src/Window.h"
 
 int main()
 {

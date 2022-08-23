@@ -4,6 +4,11 @@
 #include <float3.h>
 #include <float4x4.h>
 
+namespace CycloneEngine
+{
+	class Input;
+}
+
 using CycloneEngine::float3;
 using CycloneEngine::float4x4;
 
@@ -23,6 +28,8 @@ namespace CycloneEditor
 		float4x4 m_projectionMatrix;
 
 		friend Gizmos;
+
+		CycloneEngine::Input* m_input;
 		
 	};
 }

@@ -9,7 +9,6 @@
 #include "Debug.h"
 #include "Input.h"
 #include "../resource.h"
-#include "Input.h"
 
 using CycloneEngine::Input;
 
@@ -56,6 +55,11 @@ namespace CycloneEditor
 		SendMessage(hWnd, WM_SETICON, ICON_SMALL, (LPARAM)hIcon);
 		SendMessage(hWnd, WM_SETICON, ICON_BIG, (LPARAM)hIcon);
 
+		glfwSetWindowSizeCallback(m_windowInstance, [](GLFWwindow*, const int _w, const int _h)
+		{
+			glViewport(0, 0, _w, _h);
+		});
+		
 		Input::CreateInstance(m_windowInstance);
 
 		m_editorInstance = new CycloneEditor::Editor(m_windowInstance);

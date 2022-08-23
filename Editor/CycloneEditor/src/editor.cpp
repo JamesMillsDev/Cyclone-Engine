@@ -37,8 +37,6 @@ namespace CycloneEditor
         m_settings->Deserialize(_window);
 	    Gizmos::Create(10000, 10000, 10000, 10000);
 
-        input = new Input();
-
         IMGUI_CHECKVERSION();
         ImGui::CreateContext();
         ImGuiIO& io = ImGui::GetIO();

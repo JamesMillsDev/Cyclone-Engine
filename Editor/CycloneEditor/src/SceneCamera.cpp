@@ -15,6 +15,7 @@ namespace CycloneEditor
         m_projectionMatrix = glm::perspective(glm::pi<float>() * 0.25f,
                                           _windowWidth / _windowHeight,
                                           0.1f, 1000.f);
+
     }
 
     void SceneCamera::Draw()
@@ -23,8 +24,10 @@ namespace CycloneEditor
 
     void SceneCamera::Update(const float _dt)
     {
-        const float frameSpeed = input->KeyPressed(Keycode::LeftShift) ? _dt * 2.0f : _dt;
-        if(input->KeyPressed(Keycode::W))
+        m_input = Input::GetInstance();
+        
+        const float frameSpeed = m_input->IsKeyDown(Keycode::LeftShift) ? _dt * 2.0f : _dt;
+        if(m_input->IsKeyDown(Keycode::W))
             m_viewMatrix = m_viewMatrix * float4x4::Translation(0, 0, frameSpeed);
     }
 }

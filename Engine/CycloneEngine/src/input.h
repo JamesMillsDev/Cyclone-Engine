@@ -150,33 +150,33 @@ namespace CycloneEngine
         static Input* GetInstance() { return m_instance; }
 
         // query the keyboard state
-        CYCLONE_DLL bool IsKeyDown(Keycode _inputKeyId);
-        CYCLONE_DLL bool IsKeyUp(Keycode _inputKeyId);
+        bool IsKeyDown(Keycode _inputKeyId);
+        bool IsKeyUp(Keycode _inputKeyId);
 
         // returns true if the key was pressed / released this frame
-        CYCLONE_DLL bool WasKeyPressed(Keycode _inputKeyId);
-        CYCLONE_DLL bool WasKeyReleased(Keycode _inputKeyId);
+        bool WasKeyPressed(Keycode _inputKeyId);
+        bool WasKeyReleased(Keycode _inputKeyId);
 
         // query the mouse button state
-        CYCLONE_DLL bool IsMouseButtonDown(int _inputMouseId);
-        CYCLONE_DLL bool IsMouseButtonUp(int _inputMouseId);
+        bool IsMouseButtonDown(int _inputMouseId);
+        bool IsMouseButtonUp(int _inputMouseId);
 
         // returns true if the button was pressed / released this frame
-        CYCLONE_DLL bool WasMouseButtonPressed(int _inputMouseId);
-        CYCLONE_DLL bool WasMouseButtonReleased(int _inputMouseId);
+        bool WasMouseButtonPressed(int _inputMouseId);
+        bool WasMouseButtonReleased(int _inputMouseId);
 
         // query the mouse position
-        CYCLONE_DLL int GetMouseX();
-        CYCLONE_DLL int GetMouseY();
-        CYCLONE_DLL void GetMousePos(int* _x, int* _y);
+        int GetMouseX();
+        int GetMouseY();
+        void GetMousePos(int* _x, int* _y);
 
         // query mouse movement
-        CYCLONE_DLL int GetMouseDeltaX();
-        CYCLONE_DLL int GetMouseDeltaY();
-        CYCLONE_DLL void GetMouseDelta(int* _x, int* _y);
+        int GetMouseDeltaX();
+        int GetMouseDeltaY();
+        void GetMouseDelta(int* _x, int* _y);
 
         // query how far the mouse wheel has been moved 
-        CYCLONE_DLL double GetMouseScroll();
+        double GetMouseScroll();
 
         typedef function<void(GLFWwindow* _window, int _key, int _scancode, int _action, int _mods)> KeyCallback;
         typedef function<void(GLFWwindow* _window, unsigned int _character)> CharCallback;
@@ -191,15 +191,15 @@ namespace CycloneEngine
         void AttachMouseScrollObserver(const MouseScrollCallback& _callback) { m_instance->m_mouseScrollCallbacks.push_back(_callback); }
 
     private:
-        CYCLONE_DLL static void CreateInstance(void* _window);
-        CYCLONE_DLL static void DestroyInstance();
-        CYCLONE_DLL void ClearStatus(void* _window);
+        static void CreateInstance(void* _window);
+        static void DestroyInstance();
+        void ClearStatus(void* _window);
 
-        CYCLONE_DLL Input(void* _window);
-        CYCLONE_DLL ~Input();
+        Input(void* _window);
+        ~Input();
         Input(const Input&) = delete;
 
-        CYCLONE_DLL static Input* m_instance;
+        static Input* m_instance;
 
         vector<int> m_pressedKeys;
         vector<unsigned int> m_pressedCharacters;

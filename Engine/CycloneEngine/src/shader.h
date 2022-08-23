@@ -1,8 +1,6 @@
 #ifndef CYCLONE_SHADER
 #define CYCLONE_SHADER
 
-#include "CycloneEngine.h"
-
 #include <vector>
 
 namespace CycloneEngine

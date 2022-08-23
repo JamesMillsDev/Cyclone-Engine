@@ -8,14 +8,14 @@ namespace CycloneEngine
 	class BoxCollider : public ICollider
 	{
 	public:
-		CYCLONE_DLL BoxCollider(GameObject* _owner);
-		CYCLONE_DLL virtual float3 ClosestPoint(float3& _point) override;
-		CYCLONE_DLL virtual bool Overlaps(float3& _point) override;
+		BoxCollider(GameObject* _owner);
+		virtual float3 ClosestPoint(float3& _point) override;
+		virtual bool Overlaps(float3& _point) override;
 
 		float3 size;
 
 	protected:
-		CYCLONE_DLL virtual bool CollidesWith(ICollider* _other) override;
+		virtual bool CollidesWith(ICollider* _other) override;
 
 	};
 }

@@ -1,8 +1,6 @@
 #ifndef CYLCONE_ENGINE_RAY
 #define CYLCONE_ENGINE_RAY
 
-#include "CyclonePhysics.h"
-
 #include <float3.h>
 
 namespace CycloneEngine
@@ -16,8 +14,8 @@ namespace CycloneEngine
 		inline Ray(const float3& _origin, const float3& _direction)
 			: origin(_origin), direction(_direction) {}
 
-		CYCLONE_DLL void NormalizeDirection();
-		CYCLONE_DLL static Ray FromPoints(const float3& _from, const float3& _to);
+		void NormalizeDirection();
+		static Ray FromPoints(const float3& _from, const float3& _to);
 
 	} Ray;
 }

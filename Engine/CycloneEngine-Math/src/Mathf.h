@@ -1,8 +1,6 @@
 #ifndef CYCLONE_MATH_MATHF
 #define CYCLONE_MATH_MATHF
 
-#include "CycloneMath.h"
-
 #include <cmath>
 #include <cfloat>
 
@@ -18,7 +16,7 @@ namespace CycloneEngine
 		static float degToRad;
 		static float radToDeg;
 
-		CYCLONE_DLL static float Clamp(float _val, float _min, float _max);
+		static float Clamp(float _val, float _min, float _max);
 	};
 }
 

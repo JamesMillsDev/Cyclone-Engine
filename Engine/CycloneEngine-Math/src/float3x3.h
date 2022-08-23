@@ -1,8 +1,6 @@
 ﻿#ifndef CYCLONE_MATH_FLOAT_3X3
 #define CYCLONE_MATH_FLOAT_3X3
 
-#include "CycloneMath.h"
-
 #include "float3.h"
 
 namespace CycloneEngine
@@ -50,18 +48,18 @@ namespace CycloneEngine
             m33 = _m33;
         }
 
-        CYCLONE_DLL static float3x3 Transpose(const float3x3& _matrix);
-        CYCLONE_DLL static float3x3 Inverse(const float3x3& _matrix);
+        static float3x3 Transpose(const float3x3& _matrix);
+        static float3x3 Inverse(const float3x3& _matrix);
 
-        CYCLONE_DLL static float3x3 Rotation(float _pitch, float _yaw, float _roll);
-        CYCLONE_DLL static float3x3 AxisAngle(const float3& _axis, float _angle);
+        static float3x3 Rotation(float _pitch, float _yaw, float _roll);
+        static float3x3 AxisAngle(const float3& _axis, float _angle);
 
-        CYCLONE_DLL static float3 MultiplyVector(const float3& _vector, const float3x3& _matrix);
+        static float3 MultiplyVector(const float3& _vector, const float3x3& _matrix);
         
     } float3x3;
 
-    CYCLONE_DLL float3x3 operator*(const float3x3& _matrix, float _scalar);
-    CYCLONE_DLL float3x3 operator*(const float3x3& _matrix, const float3x3& _other);
+    float3x3 operator*(const float3x3& _matrix, float _scalar);
+    float3x3 operator*(const float3x3& _matrix, const float3x3& _other);
 }
 
 #endif //!CYCLONE_MATH_FLOAT_3X3

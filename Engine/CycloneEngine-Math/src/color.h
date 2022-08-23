@@ -3,8 +3,6 @@
 
 #include <glm/vec4.hpp>
 
-#include "CycloneMath.h"
-
 namespace CycloneEngine
 {
     typedef struct color
@@ -28,10 +26,10 @@ namespace CycloneEngine
             return asArray[_i];
         }
 
-        CYCLONE_DLL color();
-        CYCLONE_DLL color(float _r, float _g, float _b, float _a);
-        CYCLONE_DLL color(const glm::vec4& _vector);
-        CYCLONE_DLL operator glm::vec4 const() const;
+        color();
+        color(float _r, float _g, float _b, float _a);
+        color(const glm::vec4& _vector);
+        operator glm::vec4 const() const;
     
     } color;
 }

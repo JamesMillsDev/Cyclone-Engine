@@ -1,8 +1,6 @@
 #ifndef CYCLONE_INPUT
 #define CYCLONE_INPUT
 
-#include "CycloneEngine.h"
-
 #include <vector>
 #include <functional>
 #include <map>

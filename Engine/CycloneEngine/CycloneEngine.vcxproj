@@ -19,6 +19,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\components\MeshFilter.cpp" />
     <ClCompile Include="src\components\Camera.cpp" />
     <ClCompile Include="src\GameObject.cpp" />
     <ClCompile Include="src\components\Component.cpp" />
@@ -27,10 +28,10 @@
     <ClCompile Include="src\components\Transform.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\components\MeshFilter.h" />
     <ClInclude Include="src\components\Camera.h" />
     <ClInclude Include="src\GameObject.h" />
     <ClInclude Include="src\components\Component.h" />
-    <ClInclude Include="src\CycloneEngine.h" />
     <ClInclude Include="src\Input.h" />
     <ClInclude Include="src\Shader.h" />
     <ClInclude Include="src\components\Transform.h" />
@@ -57,13 +58,13 @@
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>v143</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
@@ -96,12 +97,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>$(IncludePath);</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+    <LibraryPath>$(SolutionDir)dep\glfw-3.3.7\lib;$(SolutionDir)dep\glew-2.1.0\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
     <IncludePath>$(IncludePath);</IncludePath>
-    <LibraryPath>$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
+    <LibraryPath>$(SolutionDir)dep\glfw-3.3.7\lib;$(SolutionDir)dep\glew-2.1.0\lib;$(VC_LibraryPath_x64);$(WindowsSDK_LibraryPath_x64);</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -151,6 +152,9 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)\dep\glfw-3.3.7\lib;$(SolutionDir)\dep\glew-2.1.0\lib;$(SolutionDir)$(IntDir)</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -173,6 +177,9 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
       <AdditionalLibraryDirectories>$(SolutionDir)\dep\glfw-3.3.7\lib;$(SolutionDir)\dep\glew-2.1.0\lib;$(SolutionDir)$(IntDir)</AdditionalLibraryDirectories>
     </Link>
+    <Lib>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

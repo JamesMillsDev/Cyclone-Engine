@@ -3,8 +3,6 @@
 
 #include <glm/vec2.hpp>
 
-#include "CycloneMath.h"
-
 namespace CycloneEngine
 {
 #define FLOAT_2_SIZE 2
@@ -27,30 +25,30 @@ namespace CycloneEngine
 			return asArray[_i];
 		}
 
-		CYCLONE_DLL float2();
-		CYCLONE_DLL float2(float _x, float _y);
-		CYCLONE_DLL float2(const glm::vec2& _vector);
-		CYCLONE_DLL operator glm::vec2 const() const;
+		float2();
+		float2(float _x, float _y);
+		float2(const glm::vec2& _vector);
+		operator glm::vec2 const() const;
 
-		CYCLONE_DLL float Magnitude() const;
-		CYCLONE_DLL float MagnitudeSq() const;
+		float Magnitude() const;
+		float MagnitudeSq() const;
 
-		CYCLONE_DLL void Normalize();
+		void Normalize();
 
-		CYCLONE_DLL static float Dot(const float2& _lhs, const float2& _rhs);
-		CYCLONE_DLL static float Distance(const float2& _lhs, const float2& _rhs);
-		CYCLONE_DLL static float2 Normalized(const float2& _lhs);
-		CYCLONE_DLL static float2 Project(const float2& _length, const float2& _direction);
-		CYCLONE_DLL static float2 Perpendicular(const float2& _length, const float2& _direction);
-		CYCLONE_DLL static float2 Reflect(const float2& _vector, const float2& _normal);
+		static float Dot(const float2& _lhs, const float2& _rhs);
+		static float Distance(const float2& _lhs, const float2& _rhs);
+		static float2 Normalized(const float2& _lhs);
+		static float2 Project(const float2& _length, const float2& _direction);
+		static float2 Perpendicular(const float2& _length, const float2& _direction);
+		static float2 Reflect(const float2& _vector, const float2& _normal);
 	} float2;
 
-	CYCLONE_DLL float2 operator+(const float2& _lhs, const float2& _rhs);
-	CYCLONE_DLL float2 operator-(const float2& _lhs, const float2& _rhs);
-	CYCLONE_DLL float2 operator*(const float2& _lhs, const float2& _rhs);
-	CYCLONE_DLL float2 operator*(const float2& _lhs, const float _rhs);
-	CYCLONE_DLL bool operator==(const float2& _lhs, const float2& _rhs);
-	CYCLONE_DLL bool operator!=(const float2& _lhs, const float2& _rhs);
+	float2 operator+(const float2& _lhs, const float2& _rhs);
+	float2 operator-(const float2& _lhs, const float2& _rhs);
+	float2 operator*(const float2& _lhs, const float2& _rhs);
+	float2 operator*(const float2& _lhs, const float _rhs);
+	bool operator==(const float2& _lhs, const float2& _rhs);
+	bool operator!=(const float2& _lhs, const float2& _rhs);
 }
 
 #endif //!CYCLONE_MATH_VECTOR2

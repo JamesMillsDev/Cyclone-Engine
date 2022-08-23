@@ -5,7 +5,6 @@
 #include <quaternion.h>
 #include <float4x4.h>
 
-#include "CycloneEngine.h"
 #include "Component.h"
 
 namespace CycloneEngine

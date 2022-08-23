@@ -1,8 +1,6 @@
 ﻿#ifndef CYCLONE_MATH_FLOAT2X2
 #define CYCLONE_MATH_FLOAT2X2
 
-#include "CycloneMath.h"
-
 namespace CycloneEngine
 {
 #define FLOAT2X2_SIZE 2
@@ -39,13 +37,13 @@ namespace CycloneEngine
             m22 = _m22;
         }
 
-        CYCLONE_DLL static float2x2 Transpose(const float2x2& _matrix);
-        CYCLONE_DLL static float2x2 Inverse(const float2x2& _matrix);
+        static float2x2 Transpose(const float2x2& _matrix);
+        static float2x2 Inverse(const float2x2& _matrix);
         
     } float2x2;
 
-    CYCLONE_DLL float2x2 operator*(const float2x2& _matrix, float _scalar);
-    CYCLONE_DLL float2x2 operator*(const float2x2& _matrix, const float2x2& _other);
+    float2x2 operator*(const float2x2& _matrix, float _scalar);
+    float2x2 operator*(const float2x2& _matrix, const float2x2& _other);
 }
 
 #endif //!CYCLONE_MATH_FLOAT2X2

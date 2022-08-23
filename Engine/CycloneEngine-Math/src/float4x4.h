@@ -1,8 +1,6 @@
 ﻿#ifndef CYCLONE_MATH_FLOAT_4X4
 #define CYCLONE_MATH_FLOAT_4X4
 
-#include "CycloneMath.h"
-
 #include "float3.h"
 
 #include <glm/mat4x4.hpp>
@@ -62,39 +60,39 @@ namespace CycloneEngine
             m44 = _m44;
         }
         
-        CYCLONE_DLL float4x4(const glm::mat4& _matrix);
-        CYCLONE_DLL operator glm::mat4 const() const;
+        float4x4(const glm::mat4& _matrix);
+        operator glm::mat4 const() const;
 
-        CYCLONE_DLL static float4x4 Transpose(const float4x4& _matrix);
-        CYCLONE_DLL static float4x4 Inverse(const float4x4& _matrix);
+        static float4x4 Transpose(const float4x4& _matrix);
+        static float4x4 Inverse(const float4x4& _matrix);
 
-        CYCLONE_DLL static float4x4 Translation(const float _x, const float _y, const float _z);
-        CYCLONE_DLL static float4x4 Translation(const float3& _pos);
-        CYCLONE_DLL static float3 GetTranslation(const float4x4& _matrix);
+        static float4x4 Translation(const float _x, const float _y, const float _z);
+        static float4x4 Translation(const float3& _pos);
+        static float3 GetTranslation(const float4x4& _matrix);
 
-        CYCLONE_DLL static float4x4 Scale(const float _x, const float _y, const float _z);
-        CYCLONE_DLL static float4x4 Scale(const float3& _scale);
-        CYCLONE_DLL static float3 GetScale(const float4x4& _matrix);
+        static float4x4 Scale(const float _x, const float _y, const float _z);
+        static float4x4 Scale(const float3& _scale);
+        static float3 GetScale(const float4x4& _matrix);
 
-        CYCLONE_DLL static float4x4 Rotation(float _pitch, float _yaw, float _roll);
-        CYCLONE_DLL static float4x4 Rotation(const float3& _euler);
-        CYCLONE_DLL static float4x4 AxisAngle(const float3& _axis, float _angle);
+        static float4x4 Rotation(float _pitch, float _yaw, float _roll);
+        static float4x4 Rotation(const float3& _euler);
+        static float4x4 AxisAngle(const float3& _axis, float _angle);
 
-        CYCLONE_DLL static float3 MultiplyPoint(const float3& _vector, const float4x4& _matrix);
-        CYCLONE_DLL static float3 MultiplyVector(const float3& _vector, const float4x4& _matrix);
+        static float3 MultiplyPoint(const float3& _vector, const float4x4& _matrix);
+        static float3 MultiplyVector(const float3& _vector, const float4x4& _matrix);
 
-        CYCLONE_DLL static float4x4 TRS(const float3& _translation, const float3& _euler, const float3& _scale);
-        CYCLONE_DLL static float4x4 TRS(const float3& _translation, const float3& _axis, float _angle, const float3& _scale);
+        static float4x4 TRS(const float3& _translation, const float3& _euler, const float3& _scale);
+        static float4x4 TRS(const float3& _translation, const float3& _axis, float _angle, const float3& _scale);
 
-        CYCLONE_DLL static float4x4 LookAt(const float3& _position, const float3& _target, const float3& _up);
+        static float4x4 LookAt(const float3& _position, const float3& _target, const float3& _up);
 
-        CYCLONE_DLL static float4x4 Projection(float _fov, float _aspect, float _near, float _far);
-        CYCLONE_DLL static float4x4 Ortho(float _left, float _right, float _bottom, float _top, float _near, float _far);
+        static float4x4 Projection(float _fov, float _aspect, float _near, float _far);
+        static float4x4 Ortho(float _left, float _right, float _bottom, float _top, float _near, float _far);
         
     } float4x4;
 
-    CYCLONE_DLL float4x4 operator*(const float4x4& _matrix, float _scalar);
-    CYCLONE_DLL float4x4 operator*(const float4x4& _matrix, const float4x4& _other);
+    float4x4 operator*(const float4x4& _matrix, float _scalar);
+    float4x4 operator*(const float4x4& _matrix, const float4x4& _other);
 }
 
 #endif //!CYCLONE_MATH_FLOAT_4X4
